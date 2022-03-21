@@ -10,6 +10,9 @@
   --default-icon-color:#cfcfcf;
   --hoveractive-icon-color:#7a7a7a;
   --section-header-color: #7f7f7f;
+  --section-hover-color: #ffffff;
+  --off-editor-text-color: #bebebe;
+  --on-editor-text-color: #585858;
   background-color: #fcfcfc;
   transition: background-color 0.3s;
 }
@@ -24,6 +27,9 @@
   --default-icon-color:#7a7a7a;
   --hoveractive-icon-color:#dbdbdb;
   --section-header-color: #8f8f8f;
+  --section-hover-color: #2c313a;
+  --off-editor-text-color: #585858;
+  --on-editor-text-color: #bebebe;
   background-color: #2b2b2b;
   transition: background-color 0.3s;
 }
@@ -49,6 +55,27 @@ html{font-family:'D2Coding';}
   display: flex;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+
+.textdisplay {
+  margin: 0;
+  text-align: left;
+}
+
+.textbox {
+  position:absolute;
+  z-index:-999;
+  width: 0;
+  height: 0;
+
+}
+
+pre {
+  color: var(--off-editor-text-color);
+  font-size:20px;
+  line-height:25px;
+
 }
 
 h1 {
@@ -111,6 +138,22 @@ ul {
   transition: all 0.3s; 
 }
 
+.filename {
+  display: block;
+  height: 35px;
+  text-align: left;
+  line-height: 38px;
+  padding-left: 10px;
+  padding-right: 17px;
+  float: left;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--section-header-color);
+  font-size: 17px;  
+  background-color: var(--editor-background-color);
+  transition: all 0.3s;
+}
+
 .sidebarsection-header {
   width: 176px;
   height: 35px;
@@ -120,12 +163,135 @@ ul {
   font-weight: normal;
   font-style: normal;
   color: var(--section-header-color);
-  font-size: 20px;  /* Preferred icon size */
+  font-size: 20px;  
   background-color: var(--sidebarbutton-background-color);
   transition: all 0.3s;
 }
+
+.sidebarsection-list {
+  width: 179px;
+  height: 22px;
+  text-align: left;
+  line-height: 23px;
+  padding-left: 15px;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--section-header-color);
+  font-size: 13px;  
+  background-color: var(--sidebar-background-color);
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.sidebarsection-listactive {
+  width: 179px;
+  height: 22px;
+  text-align: left;
+  line-height: 23px;
+  padding-left: 15px;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--section-header-color);
+  font-size: 13px;  
+  background-color: var(--section-hover-color);
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.sidebarsection-list:nth-child(n+9) {
+  visibility: hidden;
+}
+
+.sidebarsection-list:hover {
+  background-color: var(--section-hover-color);
+  cursor: pointer;
+  transition: color 0.0s;
+}
+
+.sidebarsection-debug {
+  width: 179px;
+  height: 140px;
+  text-align: left;
+  line-height: 21px;
+  padding-left: 5px;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--section-header-color);
+  font-size: 13px;  /* Preferred icon size */
+  background-color: var(--sidebar-background-color);
+  transition: all 0.3s;
+}
+
+.sidebarsection-debug p {
+  transition: all 0.3s;
+}
+
+.sidebarsection-debug p:nth-child(1){
+  display: inline-block;
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 65px;
+  margin-right: 2px;
+  font-size: 37px;
+}
+
+.sidebarsection-debug p:nth-child(2){
+  display: inline-block;
+  margin: 0;
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.sidebarsection-debug p:nth-child(3){
+  display: inline-block;
+  margin: 0;
+  margin-left: 94px;
+  margin-right: 3px;
+  font-size: 14px;
+}
+
+.sidebarsection-debug p:nth-child(4){
+  display: inline-block;
+  margin: 0;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.sidebarsection-rank {
+  width: 179px;
+  height: 140px;
+  text-align: left;
+  line-height: 21px;
+  padding-left: 5px;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--section-header-color);
+  font-size: 13px;  /* Preferred icon size */
+  background-color: var(--sidebar-background-color);
+  transition: all 0.3s;
+}
+
+.sidebarsection-rank p:nth-child(1){
+  display: inline-block;
+  margin: 0;
+  margin-left: 15px;
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.numbering {
+  margin-left: 26px;
+  margin-right: 23px;
+  font-size: 20px;
+  display: block;
+  float: left;
+  text-align: right;
+  color: #989898;
+  line-height: 25px;
+}
+
 .circlewrapper {
-  cursor:pointer;
+  cursor: pointer;
   width: 80px;
   height:16px;
   padding: 0px;
@@ -158,8 +324,9 @@ ul {
 }
 
 .editor {
+  padding-top: 15px;
   width: 989px;
-  height: 680px;
+  height: 665px;
   background-color: var(--editor-background-color);
   transition: background-color 0.3s;
 }
@@ -174,7 +341,7 @@ ul {
   width: 184px;
   height: 715px;
   background-color: var(--sidebar-background-color);
-  transition: background-color 0.3s;
+  transition: all 0.3s;
 }
 
 .topbar {

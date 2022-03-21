@@ -1,15 +1,20 @@
-import './App.css';
+import './App.css'
 import Editor from "./components/Editor"
 import Sidebar from "./components/Sidebar"
 import SidebarButton from "./components/SidebarButton"
 import Topbar from "./components/Topbar"
-
+import { useState } from 'react'
 
 
 function App() {
+  const [section, setSection] = useState("1");
+  const [file, setFile] = useState("sample1.py");
+  const [cpm, setCpm] =useState("0000");
+  const [wrongchr,setWrongchr] = useState("000");
+
 
   function easteregg() {
-    alert("장식인데요");
+    alert("누르지마!!");
   }
 
   return (
@@ -23,12 +28,12 @@ function App() {
         <li className='circle'><div></div></li>
       </ul>
       
-      <SidebarButton />
-      
-      <Sidebar />
+      <SidebarButton setSection={setSection}/>
+      <Sidebar section={section} file={file} setFile={setFile} cpm={cpm} wrongchr={wrongchr}/>
+
       <ul>
-        <li><Topbar /></li>
-        <li><Editor /></li>
+        <li><Topbar file={file}/></li>
+        <li><Editor setCpm={setCpm} setWrongchr={setWrongchr}/></li>
       </ul>
       
     </div>

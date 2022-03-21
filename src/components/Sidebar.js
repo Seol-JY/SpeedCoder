@@ -1,19 +1,53 @@
+import { useState } from "react";
+export default function Sidebar(props) {
 
+  const [filestate, setFilestate] = useState("sample1.py");
 
-export default function Sidebar() {
-  if (true) {
+  if (props.section === "1") {
     return(
       <div className="sidebar">
         <ul>
           <li className="sidebarsection-header">EXPLORER</li>
+          <li className={"sidebarsection-list"+(filestate==="sample1.py"?'active':'')} onClick={()=>{props.setFile("sample1.py"); setFilestate("sample1.py")}}>sample1.py</li>
+          <li className={"sidebarsection-list"+(filestate==="sample2.js"?'active':'')} onClick={()=>{props.setFile("sample2.js"); setFilestate("sample2.js")}}>sample2.js</li>
+          <li className="sidebarsection-list">sample3.c</li>
+          <li className="sidebarsection-list">sample4.java</li>
+          <li className="sidebarsection-list">sample332.py</li>
+          <li className="sidebarsection-list">sample1234.py</li>
+          <li className="sidebarsection-list">sample32.py</li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
           <li className="sidebarsection-header">DEBUG</li>
+          <li><div className="sidebarsection-debug">
+            <p>{props.cpm}</p>
+            <p>/cpm</p>
+            <p>ERROR:</p>
+            <p>{props.wrongchr}</p>
+            </div></li>
         </ul>
       </div>
     )
-  } else if (false) {
+  } else if (props.section === "2") {
     return(
       <div className="sidebar">
-        
+        <ul>
+          <li className="sidebarsection-header">RANKING</li>
+          <li>
+            <div className="sidebarsection-rank">
+              <p>Comming Soon!</p>
+            </div>
+          </li>
+        </ul>
       </div>
     )
   }
