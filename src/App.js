@@ -4,13 +4,12 @@ import Sidebar from "./components/Sidebar"
 import SidebarButton from "./components/SidebarButton"
 import Topbar from "./components/Topbar"
 import { useState } from 'react'
-
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 function App() {
   const [section, setSection] = useState("1");
   const [file, setFile] = useState("sample1.py");
-  const [cpm, setCpm] =useState("0000");
-  const [wrongchr,setWrongchr] = useState("000");
 
 
   function easteregg() {
@@ -18,6 +17,7 @@ function App() {
   }
 
   return (
+    <Provider store={store}>
     <div className="form no-drag">
       <h1>
         Speed Coder - Insiders
@@ -29,14 +29,15 @@ function App() {
       </ul>
       
       <SidebarButton setSection={setSection}/>
-      <Sidebar section={section} file={file} setFile={setFile} cpm={cpm} wrongchr={wrongchr}/>
+      <Sidebar section={section} file={file} setFile={setFile}/>
 
       <ul>
         <li><Topbar file={file}/></li>
-        <li><Editor setCpm={setCpm} setWrongchr={setWrongchr}/></li>
+        <li><Editor/></li>
       </ul>
       
     </div>
+    </Provider>
   );
 }
 

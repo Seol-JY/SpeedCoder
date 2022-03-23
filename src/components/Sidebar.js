@@ -1,4 +1,8 @@
 import { useState } from "react";
+import Debug from "./Debug";
+
+
+
 export default function Sidebar(props) {
 
   const [filestate, setFilestate] = useState("sample1.py");
@@ -28,12 +32,7 @@ export default function Sidebar(props) {
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-header">DEBUG</li>
-          <li><div className="sidebarsection-debug">
-            <p>{props.cpm}</p>
-            <p>/cpm</p>
-            <p>ERROR:</p>
-            <p>{props.wrongchr}</p>
-            </div></li>
+          <li><Debug/></li>
         </ul>
       </div>
     )

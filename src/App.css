@@ -1,6 +1,7 @@
 .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
 
 :root {
+  --cursor-color: rgb(25, 109, 255);
   --form-background-color: #c2c4c7;
   --header-color: #6d6d6d;
   --editor-background-color: #f9f9f9;
@@ -18,6 +19,7 @@
 }
 
 [data-theme="dark"] {
+  --cursor-color: rgb(25, 109, 255);
   --form-background-color: #21252b;
   --header-color: #525252;
   --editor-background-color: #282c34;
@@ -40,6 +42,9 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@keyframes blink-effect { 50% { opacity: 0; } }
+
 html{font-family:'D2Coding';}
 
 .form {
@@ -68,10 +73,18 @@ html{font-family:'D2Coding';}
   z-index:-999;
   width: 0;
   height: 0;
+}
 
+.cursor {
+  display:inline-block;
+  font-weight: border;
+  width:0px;
+  color: var(--cursor-color);
+  animation: blink-effect 1s step-end infinite;
 }
 
 pre {
+  font-family: 'D2coding';
   color: var(--off-editor-text-color);
   font-size:20px;
   line-height:25px;
