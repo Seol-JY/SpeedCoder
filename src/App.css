@@ -88,7 +88,6 @@ pre {
   color: var(--off-editor-text-color);
   font-size:20px;
   line-height:25px;
-
 }
 
 h1 {
@@ -211,7 +210,7 @@ ul {
   transition: background-color 0.3s;
 }
 
-.sidebarsection-list:nth-child(n+9) {
+.sidebarsection-list:nth-child(n+4) {
   visibility: hidden;
 }
 
@@ -263,11 +262,19 @@ ul {
   font-size: 14px;
 }
 
-.sidebarsection-debug p:nth-child(4){
+.wrong{
   display: inline-block;
   margin: 0;
   margin-top: 5px;
   font-size: 20px;
+}
+
+.onwrong{
+  display: inline-block;
+  margin: 0;
+  margin-top: 5px;
+  font-size: 20px;
+  color: #ff5c5c;
 }
 
 .sidebarsection-rank {

@@ -11,7 +11,6 @@ function App() {
   const [section, setSection] = useState("1");
   const [file, setFile] = useState("sample1.py");
 
-
   function easteregg() {
     alert("누르지마!!");
   }
@@ -33,7 +32,7 @@ function App() {
 
       <ul>
         <li><Topbar file={file}/></li>
-        <li><Editor/></li>
+        <li><Editor file={file} section={section}/></li>
       </ul>
       
     </div>

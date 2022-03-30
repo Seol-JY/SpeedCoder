@@ -8,7 +8,7 @@ const setWrongchrReducer = (state = setWrongchrState, action) => {
     switch (action.type) {
         case SET_WRONGCHR:
             return {
-                ...state,
+                ...state,   
                 Wrongchr: action.value
             }
         default: return state;

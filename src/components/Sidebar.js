@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Debug from "./Debug";
 
 
@@ -6,7 +6,9 @@ import Debug from "./Debug";
 export default function Sidebar(props) {
 
   const [filestate, setFilestate] = useState("sample1.py");
-
+  useEffect (()=>{
+    console.log("up!");
+  })
   if (props.section === "1") {
     return(
       <div className="sidebar">
@@ -14,11 +16,11 @@ export default function Sidebar(props) {
           <li className="sidebarsection-header">EXPLORER</li>
           <li className={"sidebarsection-list"+(filestate==="sample1.py"?'active':'')} onClick={()=>{props.setFile("sample1.py"); setFilestate("sample1.py")}}>sample1.py</li>
           <li className={"sidebarsection-list"+(filestate==="sample2.js"?'active':'')} onClick={()=>{props.setFile("sample2.js"); setFilestate("sample2.js")}}>sample2.js</li>
-          <li className="sidebarsection-list">sample3.c</li>
-          <li className="sidebarsection-list">sample4.java</li>
-          <li className="sidebarsection-list">sample332.py</li>
-          <li className="sidebarsection-list">sample1234.py</li>
-          <li className="sidebarsection-list">sample32.py</li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
+          <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
@@ -32,7 +34,7 @@ export default function Sidebar(props) {
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-header">DEBUG</li>
-          <li><Debug/></li>
+          <li><Debug filestate={filestate}/></li>
         </ul>
       </div>
     )
