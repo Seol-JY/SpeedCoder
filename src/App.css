@@ -70,9 +70,9 @@ html{font-family:'D2Coding';}
 
 .textbox {
   position:absolute;
-  z-index:-999;
   width: 0;
   height: 0;
+  z-index: -999;
 }
 
 .cursor {

@@ -37,7 +37,7 @@ function Text(props) {
                             wrong++;
                         }
                     }
-                    return (user.length===i?<pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}><div className="cursor">_</div>{s}</pre>:<pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>{s}</pre>);
+                    return (<pre key={i} onClick={()=>{console.log(i)}} style={{display: "inline", backgroundColor: color, color: colortxt}}>{user.length===i?<div className="cursor">_</div>:""}{s}</pre>);
                 })
 
             }
