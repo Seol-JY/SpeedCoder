@@ -46,19 +46,29 @@
 @keyframes blink-effect { 50% { opacity: 0; } }
 
 html{font-family:'D2Coding';}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mainWrapper {
+  width: 100vw;
+  height: 100vh;
+}
 
 .form {
-  position: absolute;
   width: 1222px;
   height: 764px;
-  left: 50%;
-  top: 50%;
   border-radius: 11px;
-  transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%);*/
   background-color: var(--form-background-color);
   transition: background-color 0.3s;
+  position: absolute;
+  left: calc(100vw/2 - 611px);
+  top: calc(100vh/2 - 382px);
   display: flex;
   align-items: center;
+  justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 

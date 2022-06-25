@@ -6,10 +6,16 @@ import Topbar from "./components/Topbar"
 import { useState } from 'react'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import Draggable from "react-draggable";
+
 
 function App() {
   const [section, setSection] = useState("1");
   const [file, setFile] = useState("sample1.py");
+  const [position, setPosition] = useState({ x: 0, y: 0 }); 
+  const trackPos = (data) => {
+	  setPosition({ x: data.x, y: data.y }); 
+  };
 
   function easteregg() {
     alert("누르지마!!");
@@ -17,25 +23,27 @@ function App() {
 
   return (
     <Provider store={store}>
-    <div className="form no-drag">
-      <h1>
-        Speed Coder - Insiders
-      </h1>
-      <ul className='circlewrapper' onClick={easteregg}>
-        <li className='circle'><div></div></li>
-        <li className='circle'><div></div></li>
-        <li className='circle'><div></div></li>
-      </ul>
-      
-      <SidebarButton setSection={setSection}/>
-      <Sidebar section={section} file={file} setFile={setFile}/>
+      <Draggable onDrag={(e, data) => trackPos(data)} >
+        <div className="form no-drag">
+          <h1 onClick={ ()=>{ setPosition({ x: 0, y: 0 })}}>
+            Speed Coder - Insiders
+          </h1>
+          <ul className='circlewrapper' onClick={easteregg}>
+            <li className='circle'><div></div></li>
+            <li className='circle'><div></div></li>
+            <li className='circle'><div></div></li>
+          </ul>
+          
+          <SidebarButton setSection={setSection}/>
+          <Sidebar section={section} file={file} setFile={setFile}/>
 
-      <ul>
-        <li><Topbar file={file}/></li>
-        <li><Editor file={file} section={section}/></li>
-      </ul>
-      
-    </div>
+          <ul>
+            <li><Topbar file={file}/></li>
+            <li><Editor file={file} section={section}/></li>
+          </ul>
+          
+        </div>
+      </Draggable>
     </Provider>
   );
 }

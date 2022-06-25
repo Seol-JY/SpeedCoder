@@ -7,11 +7,12 @@ import getFilecontents from '../filecontents'
 
 function Text(props) {
     const file = getFilecontents(props.file);
-    const text = file.content;
-    const colormap = file.colormap;
-    const textSplit = text.split('');
-    const user = props.userInput;
+    const textSplit = file.content;     
+    const colormap = file.colormap
+    const user  = props.userInput;
     const userSplit = user.split(''); 
+    console.log(textSplit);
+
 
     let wrong = 0, correct = 0;
 
@@ -24,9 +25,9 @@ function Text(props) {
         <div className="textdisplay">
             {
                 textSplit.map((s,i) => {
-                    let color;
+                    let color;  
                     let colortxt;
-                    if (i < user.length) {
+                    if (i < user.length) {  
                         if (s === userSplit[i]) {   //correct
                             color = '';
                             colortxt = 'black';
@@ -37,7 +38,7 @@ function Text(props) {
                             wrong++;
                         }
                     }
-                    return (<pre key={i} onClick={()=>{console.log(i)}} style={{display: "inline", backgroundColor: color, color: colortxt}}>{user.length===i?<div className="cursor">_</div>:""}{s}</pre>);
+                    return (<pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>{user.length===i?<div className="cursor">_</div>:""}{s}</pre>);
                 })
 
             }

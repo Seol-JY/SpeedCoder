@@ -1,7 +1,6 @@
 import Text from "./Text"
 import { useState,useEffect } from 'react'
 
-
 export default function Editor({file, section}) {
 
   const [userInput, setuserInput] = useState("");
@@ -41,3 +40,4 @@ export default function Editor({file, section}) {
     )
 }
 
+  
