@@ -19,8 +19,8 @@ function Text(props) {
     },[props.file]);
 
     useEffect(()=>{
-        if(props.daynight%2===1) setThemeColor("black");
-        else setThemeColor("white");
+        if(props.daynight%2===1) setThemeColor("#585858");
+        else setThemeColor("#BEBEBE");
     }, [props.daynight])
 
     useEffect(() => {
