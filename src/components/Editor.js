@@ -1,7 +1,7 @@
 import Text from "./Text"
-import { useState,useEffect } from 'react'
+import { useState } from 'react'
 
-export default function Editor({file, section}) {
+export default function Editor({file, section, daynight}) {
 
   const [userInput, setuserInput] = useState("");
   const [f, sF] = useState();
@@ -35,7 +35,7 @@ export default function Editor({file, section}) {
       <div className="editor" onClick={focus}>
         <div className="numbering">1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26</div>
         <textarea  className="textbox" value={userInput} onKeyDown={userInputTabHandler} onChange={userInputHandler}></textarea>
-        <Text userInput={userInput} file = {file}/>
+        <Text userInput={userInput} file = {file} daynight={daynight}/>
       </div>
     )
 }

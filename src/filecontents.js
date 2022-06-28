@@ -8,7 +8,7 @@ const getFilecontents = (filename) =>{
             }
         case "sample2.js":
             return {
-                content: ("test code\n    hello world\n        nice codeadfsfddddddddddddddddddddddddddddddddddddddddddddddddd").split(''),
+                content: ("test code\n    hello world\n        fooooooobarrrrrrrbazzzzzzzzzfoooobarrrbazzzz").split(''),
                 colormap: ""
             }
         default: return "err"

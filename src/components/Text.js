@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { setCorrectchr } from '../redux/correct/actions'
 import {setWrongchr} from '../redux/wrong/actions'
@@ -6,15 +6,22 @@ import getFilecontents from '../filecontents'
 
 
 function Text(props) {
-    const file = getFilecontents(props.file);
-    const textSplit = file.content;     
-    const colormap = file.colormap
+    //const colormap = file.colormap
+    const [textSplit, setTextSplit] = useState([]);
+    const [themeColor, setThemeColor] = useState("");
+    let wrong = 0, correct = 0;
     const user  = props.userInput;
     const userSplit = user.split(''); 
-    console.log(textSplit);
+    //console.log(textSplit);
+    
+    useEffect(()=>{
+        setTextSplit(getFilecontents(props.file).content);
+    },[props.file]);
 
-
-    let wrong = 0, correct = 0;
+    useEffect(()=>{
+        if(props.daynight%2===1) setThemeColor("black");
+        else setThemeColor("white");
+    }, [props.daynight])
 
     useEffect(() => {
         props.setCorrectchr(correct);
@@ -27,14 +34,15 @@ function Text(props) {
                 textSplit.map((s,i) => {
                     let color;  
                     let colortxt;
+
                     if (i < user.length) {  
                         if (s === userSplit[i]) {   //correct
                             color = '';
-                            colortxt = 'black';
+                            colortxt = themeColor;
                             correct++;
                         } else {                    //wrong
                             color = '#ff5c5c';
-                            colortxt = 'white';
+                            colortxt = "white";
                             wrong++;
                         }
                     }

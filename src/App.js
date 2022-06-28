@@ -13,6 +13,7 @@ function App() {
   const [section, setSection] = useState("1");
   const [file, setFile] = useState("sample1.py");
   const [position, setPosition] = useState({ x: 0, y: 0 }); 
+  const [daynight, setdaynight] = useState(1);
   const trackPos = (data) => {
 	  setPosition({ x: data.x, y: data.y }); 
   };
@@ -34,12 +35,12 @@ function App() {
             <li className='circle'><div></div></li>
           </ul>
           
-          <SidebarButton setSection={setSection}/>
+          <SidebarButton setSection={setSection} daynight={daynight} setdaynight={setdaynight}/>
           <Sidebar section={section} file={file} setFile={setFile}/>
 
           <ul>
             <li><Topbar file={file}/></li>
-            <li><Editor file={file} section={section}/></li>
+            <li><Editor file={file} section={section} daynight={daynight}/></li>
           </ul>
           
         </div>
