@@ -6,9 +6,6 @@ import Debug from "./Debug";
 export default function Sidebar(props) {
 
   const [filestate, setFilestate] = useState("sample1.py");
-  useEffect (()=>{
-    console.log("up!");
-  })
   if (props.section === "1") {
     return(
       <div className="sidebar">
