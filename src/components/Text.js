@@ -28,7 +28,7 @@ function Text(props) {
         props.setWrongchr(wrong);
     })
 
-    return (
+    return (   
         <div className="textdisplay">
             {
                 textSplit.map((s,i) => {

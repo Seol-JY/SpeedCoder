@@ -19,7 +19,7 @@ function Debug({filestate, Correctchr, Wrongchr}) {
     setCpm("0000");
   },[filestate])
 
-  useEffect(()=>{
+  useEffect(()=>{   // 파일변경 감지 시 cpm 초기화
     if (Wrongchr+Correctchr) {
       setTerval(50);
     } else {
@@ -30,7 +30,7 @@ function Debug({filestate, Correctchr, Wrongchr}) {
   }, [Correctchr, Wrongchr])
 
   useInterval(() => {     // useInterval custom Hook
-      setCount(count + 0.05);    //0.05씩 업데이트 UPDATE
+      setCount(count + 0.05);    //0.05씩 UPDATE
       setCpm(String(speed()).padStart(4,'0'));
   }, terval);     // Hook 실행조건, terval은 밀리초단위
 
@@ -64,7 +64,6 @@ function useInterval(callback, delay) {         // useInterval Custom Hook 선�
 
 const mapStateToProps = (state) => {        // Redux  구문
     return {    
-        
         Correctchr: state.correct.Correctchr,
         Wrongchr: state.wrong.Wrongchr
     }
