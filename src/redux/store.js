@@ -5,7 +5,7 @@ import setWrongchrReducer from './wrong/reducer';
 
 const rootReducer = combineReducers({
     correct: setCorrectchrReducer,
-    wrong: setWrongchrReducer
+    wrong: setWrongchrReducer,
 })
 
 const store = createStore(rootReducer);

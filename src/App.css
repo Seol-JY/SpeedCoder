@@ -220,7 +220,7 @@ ul {
   transition: background-color 0.3s;
 }
 
-.sidebarsection-list:nth-child(n+4) {
+.sidebarsection-list:nth-child(n+5) {               /*Sidebar list Visibility*/
   visibility: hidden;
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState,useEffect,useRef } from 'react'
 import { connect } from 'react-redux'
 
-function Debug({filestate, Correctchr, Wrongchr}) {
+function Debug({filestate, Correctchr, Wrongchr, fileLength, setFinishTrigger}) {
   const [count, setCount] = useState(0);
   const [cpm,setCpm] = useState("0000");
   const [terval, setTerval] = useState(null);
@@ -14,18 +14,26 @@ function Debug({filestate, Correctchr, Wrongchr}) {
       return sp
   }
 
-  useEffect(()=>{
+  useEffect(()=>{  // 파일변경 감지 시 cpm 초기화
     setCount(0);
     setCpm("0000");
-  },[filestate])
+    console.log(fileLength);
+  },[filestate, fileLength])
 
-  useEffect(()=>{   // 파일변경 감지 시 cpm 초기화
-    if (Wrongchr+Correctchr) {
-      setTerval(50);
-    } else {
+  useEffect(()=>{   
+    if (!(Wrongchr+Correctchr)) {
       setTerval(null);
       setCount(0);
       setCpm("0000");
+    } else {
+      setTerval(50);
+      if ((Correctchr+Wrongchr)==fileLength) {          //완료조건
+        console.log("finish");
+        setFinishTrigger(1);    //종료 트리거
+        setTerval(null);
+        setCount(0);
+        setCpm("0000");
+      }
     }
   }, [Correctchr, Wrongchr])
 
@@ -65,7 +73,7 @@ function useInterval(callback, delay) {         // useInterval Custom Hook 선�
 const mapStateToProps = (state) => {        // Redux  구문
     return {    
         Correctchr: state.correct.Correctchr,
-        Wrongchr: state.wrong.Wrongchr
+        Wrongchr: state.wrong.Wrongchr,
     }
 }
 

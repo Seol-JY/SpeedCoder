@@ -19,6 +19,12 @@ function Text(props) {
     },[props.file]);
 
     useEffect(()=>{
+        const len = textSplit.length;
+        console.log(len);
+        props.setFileLength(len);
+    },[textSplit])
+
+    useEffect(()=>{
         if(props.daynight%2===1) setThemeColor("#585858");
         else setThemeColor("#BEBEBE");
     }, [props.daynight])
@@ -57,7 +63,7 @@ function Text(props) {
 const mapStateToProps = (state) => {
     return {
         Correctchr: state.correct.Correctchr,
-        Wrongchr: state.wrong.Wrongchr
+        Wrongchr: state.wrong.Wrongchr,
     }
 }
 

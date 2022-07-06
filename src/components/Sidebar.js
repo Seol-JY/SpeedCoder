@@ -13,7 +13,7 @@ export default function Sidebar(props) {
           <li className="sidebarsection-header">EXPLORER</li>
           <li className={"sidebarsection-list"+(filestate==="sample1.py"?'active':'')} onClick={()=>{props.setFile("sample1.py"); setFilestate("sample1.py")}}>sample1.py</li>
           <li className={"sidebarsection-list"+(filestate==="sample2.js"?'active':'')} onClick={()=>{props.setFile("sample2.js"); setFilestate("sample2.js")}}>sample2.js</li>
-          <li className="sidebarsection-list"></li>
+          <li className={"sidebarsection-list"+(filestate==="sample3.js"?'active':'')} onClick={()=>{props.setFile("sample3.js"); setFilestate("sample3.js")}}>sample2.js</li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
@@ -31,7 +31,7 @@ export default function Sidebar(props) {
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-list"></li>
           <li className="sidebarsection-header">DEBUG</li>
-          <li><Debug filestate={filestate}/></li>
+          <li><Debug filestate={filestate} fileLength={props.fileLength} setFinishTrigger={props.setFinishTrigger}/></li>
         </ul>
       </div>
     )
