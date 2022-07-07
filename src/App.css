@@ -14,6 +14,8 @@
   --section-hover-color: #ffffff;
   --off-editor-text-color: #bebebe;
   --on-editor-text-color: #585858;
+  --popup-background-color: rgba(255,255,255,0.2);
+  --popup-inner-contents-background-color: #f6f6f6;
   background-color: #fcfcfc;
   transition: background-color 0.3s;
 }
@@ -32,6 +34,8 @@
   --section-hover-color: #2c313a;
   --off-editor-text-color: #585858;
   --on-editor-text-color: #bebebe;
+  --popup-background-color: rgba(0,0,0,0.2);
+  --popup-inner-contents-background-color: #252931;
   background-color: #2b2b2b;
   transition: background-color 0.3s;
 }
@@ -126,18 +130,54 @@ body {
 .popup {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255,255,255,0.2);
+  background-color: var(--popup-background-color);
 }
 
 .popup-inner {
   position: absolute;
-  left: calc(100vw/2 - 200px);
-  top: calc(100vh/2 - 175px);
-  width: 400px;
-  height: 350px;
+  left: calc(100vw/2 - 324px);
+  top: calc(100vh/2 - 229px);
+  width: 648px;
+  height: 458px;
   border-radius: 11px;
-  background-color: #eeeeee;
+  background-color: var(--form-background-color);
+  display:flex;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+.popup-inner-contents {
+  width: 648px;
+  height: 432px;
+  margin-top: 26px;
+  background-color: var(--popup-inner-contents-background-color);
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+}
+
+.popup-inner-contents-info{
+  width: auto;
+  height: 140px;
+  text-align: center;
+  padding-top: 55px;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--section-header-color);
+  transition: all 0.3s;
+}
+
+.popup-inner-contents-info p:nth-child(1){
+  display: inline-block;
+  margin: 0;
+  margin-top: 10px;
+  margin-right: 2px;
+  font-size: 60px;
+}
+
+.popup-inner-contents-info p:nth-child(2){
+  display: inline-block;
+  margin: 0;
+  margin-top: 25px;
+  font-size: 18px;
 }
 
 .form {
@@ -417,10 +457,11 @@ ul {
 }
 
 .circle {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   float: left;
+  margin-top: 3px;
   margin-left: 7px;
 }
 

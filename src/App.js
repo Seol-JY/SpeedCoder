@@ -32,7 +32,7 @@ function App() {
 %c██║     ██║   ██║██║  ██║██╔══╝  ██╔══██╗
 %c╚██████╗╚██████╔╝██████╔╝███████╗██║  ██║
 %c ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-https://github.com/Seol-JY
+      https://github.com/Seol-JY
 `, "color:#22577A", "color:#38A3A5", "color:#57CC99", "color:#80ED99", "color:#99FFED", "color:#FFFFFF", "color:#22577A", "color:#38A3A5", "color:#57CC99", "color:#80ED99", "color:#99FFED", "color:#FFFFFF")
 },[])
 
@@ -41,7 +41,7 @@ https://github.com/Seol-JY
   };
 
   function easteregg() {
-    alert("누르지마!!");
+    alert("?????????????????????????");
   };
 
   return (
