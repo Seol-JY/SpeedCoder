@@ -17,7 +17,6 @@ function Debug({filestate, Correctchr, Wrongchr, fileLength, setFinishTrigger}) 
   useEffect(()=>{  // 파일변경 감지 시 cpm 초기화
     setCount(0);
     setCpm("0000");
-    console.log(fileLength);
   },[filestate, fileLength])
 
   useEffect(()=>{   
@@ -27,9 +26,8 @@ function Debug({filestate, Correctchr, Wrongchr, fileLength, setFinishTrigger}) 
       setCpm("0000");
     } else {
       setTerval(50);
-      if ((Correctchr+Wrongchr)==fileLength) {          //완료조건
-        console.log("finish");
-        setFinishTrigger(1);    //종료 트리거
+      if ((Correctchr+Wrongchr)===fileLength) {          //완료조건
+        setFinishTrigger(parseInt(cpm));    //종료 트리거
         setTerval(null);
         setCount(0);
         setCpm("0000");

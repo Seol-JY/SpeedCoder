@@ -28,7 +28,7 @@ export default function Editor({file, setFileLength, section, daynight, finishTr
   }
   
   useEffect(()=>{
-    if (finishTrigger===1) {
+    if (finishTrigger!==-1) {
       setuserInput("");
     }
   },[finishTrigger])

@@ -12,7 +12,6 @@ function Text(props) {
     let wrong = 0, correct = 0;
     const user  = props.userInput;
     const userSplit = user.split(''); 
-    //console.log(textSplit);
     
     useEffect(()=>{
         setTextSplit(getFilecontents(props.file).content);
@@ -20,7 +19,6 @@ function Text(props) {
 
     useEffect(()=>{
         const len = textSplit.length;
-        console.log(len);
         props.setFileLength(len);
     },[textSplit])
 
