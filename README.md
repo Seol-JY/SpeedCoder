@@ -4,6 +4,7 @@
 ![1](https://i.imgur.com/l87DvjT.gif)
 
 ## 구조
+```
 FastCoder
 ├── README.md
 ├── package-lock.json
@@ -33,7 +34,8 @@ FastCoder
         └── wrong
             ├── actions.js
             ├── reducer.js
-            └── types.js  
+            └── types.js
+```
 ## 업데이트
 - 코드 리펙토링
 - 창 이동
