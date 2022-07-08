@@ -14,14 +14,14 @@ export default function PopupInner({finishTrigger, setFinishTrigger}) {
     useEffect(()=> {
         setTimeout(() => {
             setAnimation("");
-        }, 600);
+        }, 380);
     },[])
-
 
     useInterval(() => {
         setDisplayCpm(Math.ceil(finishTrigger - calcNow));
         setCalcNow(calcNow-calcNow/10);
-    }, calcNow<0.001?null:30);
+    }, calcNow<0.001||animation==="slide-in-blurred-bl"?null:30)
+    
 
     return (
         <Draggable onDrag={(e, data) => trackPos(data)} >
@@ -37,8 +37,12 @@ export default function PopupInner({finishTrigger, setFinishTrigger}) {
                         <p>/cpm</p>
                     </div>
                     {calcNow<1 && 
-                        <div className='fade-in'>안녕하세요</div>
-                    
+                        <ul className='popup-info-ul fade-in'>
+                            <li><label for="name">Name:</label></li>
+                            <li><input type="text" id="name" name="name" required maxlength="15" size="10"></input></li>
+                            <li><label for="message">Message:</label></li>
+                            <li><input type="text" id="message" name="message" required maxlength="25" size="10"></input></li>
+                        </ul>
                     }
                 </div>
             </div>

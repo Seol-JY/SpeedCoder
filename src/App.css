@@ -180,6 +180,12 @@ body {
   font-size: 18px;
 }
 
+.popup-info-ul input{
+  width: 213px;
+  height: 32px; 
+}
+
+
 .form {
   width: 1222px;
   height: 764px;
