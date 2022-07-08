@@ -3,6 +3,37 @@
 
 ![1](https://i.imgur.com/l87DvjT.gif)
 
+## 구조
+FastCoder
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+│   └── index.html
+└── src
+    ├── App.css
+    ├── App.js
+    ├── components
+    │   ├── Debug.js
+    │   ├── Editor.js
+    │   ├── Popup.js
+    │   ├── PopupInner.js
+    │   ├── Sidebar.js
+    │   ├── SidebarButton.js
+    │   ├── Text.js
+    │   └── Topbar.js
+    ├── filecontents.js
+    ├── index.js
+    └── redux
+        ├── correct
+        │   ├── actions.js
+        │   ├── reducer.js
+        │   └── types.js
+        ├── store.js
+        └── wrong
+            ├── actions.js
+            ├── reducer.js
+            └── types.js  
 ## 업데이트
 - 코드 리펙토링
 - 창 이동
