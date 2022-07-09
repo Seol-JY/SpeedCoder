@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar"
 import SidebarButton from "./components/SidebarButton"
 import Topbar from "./components/Topbar"
 import Popup from "./components/Popup"
+import egg from "./utils/egg"
 import { useState, useEffect } from 'react'
 import { Provider } from 'react-redux'
 import store from './redux/store'
@@ -19,21 +20,7 @@ function App() {
   const [finishTrigger, setFinishTrigger] = useState(-1);
 
   useEffect(()=>{
-    console.log(`
-%c███████╗██████╗ ███████╗███████╗██████╗ 
-%c██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗
-%c███████╗██████╔╝█████╗  █████╗  ██║  ██║
-%c╚════██║██╔═══╝ ██╔══╝  ██╔══╝  ██║  ██║
-%c███████║██║     ███████╗███████╗██████╔╝
-%c╚══════╝╚═╝     ╚══════╝╚══════╝╚═════╝ 
-%c ██████╗ ██████╗ ██████╗ ███████╗██████╗ 
-%c██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗
-%c██║     ██║   ██║██║  ██║█████╗  ██████╔╝
-%c██║     ██║   ██║██║  ██║██╔══╝  ██╔══██╗
-%c╚██████╗╚██████╔╝██████╔╝███████╗██║  ██║
-%c ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-      https://github.com/Seol-JY
-`, "color:#22577A", "color:#38A3A5", "color:#57CC99", "color:#80ED99", "color:#99FFED", "color:#FFFFFF", "color:#22577A", "color:#38A3A5", "color:#57CC99", "color:#80ED99", "color:#99FFED", "color:#FFFFFF")
+    egg();
 },[])
 
   const trackPos = (data) => {

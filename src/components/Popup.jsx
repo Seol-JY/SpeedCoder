@@ -7,6 +7,4 @@ export default function Popup({finishTrigger, setFinishTrigger}) {
                 <PopupInner finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger}/>
             </div>
     ) : "";
-
-
 }

@@ -45,5 +45,4 @@ export default function Editor({file, setFileLength, section, daynight, finishTr
       </div>
     )
 }
-
   

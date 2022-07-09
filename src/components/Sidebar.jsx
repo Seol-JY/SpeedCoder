@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Debug from "./Debug";
 
-
-
 export default function Sidebar(props) {
-
   const [filestate, setFilestate] = useState("sample1.py");
   if (props.section === "1") {
     return(
@@ -49,5 +46,4 @@ export default function Sidebar(props) {
       </div>
     )
   }
-    
 }

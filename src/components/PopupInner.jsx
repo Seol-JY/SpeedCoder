@@ -1,8 +1,11 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Draggable from "react-draggable";
+import useInterval from '../hooks/useInterval'
+import PopupInnerInput from './PopupInnerInput';
 
 export default function PopupInner({finishTrigger, setFinishTrigger}) {
+    // eslint-disable-next-line
     const [position, setPosition] = useState({ x: 0, y: 0 }); 
     const [animation, setAnimation] = useState("slide-in-blurred-bl");
     const [displayCpm, setDisplayCpm] = useState(0);
@@ -20,8 +23,7 @@ export default function PopupInner({finishTrigger, setFinishTrigger}) {
     useInterval(() => {
         setDisplayCpm(Math.ceil(finishTrigger - calcNow));
         setCalcNow(calcNow-calcNow/10);
-    }, calcNow<0.001||animation==="slide-in-blurred-bl"?null:30)
-    
+    }, calcNow<0.006||animation==="slide-in-blurred-bl"?null:30)
 
     return (
         <Draggable onDrag={(e, data) => trackPos(data)} >
@@ -36,33 +38,10 @@ export default function PopupInner({finishTrigger, setFinishTrigger}) {
                         <p>{String(displayCpm).padStart(4,'0')}</p>
                         <p>/cpm</p>
                     </div>
-                    {calcNow<1 && 
-                        <ul className='popup-info-ul fade-in'>
-                            <li><label for="name">Name:</label></li>
-                            <li><input type="text" id="name" name="name" required maxlength="15" size="10"></input></li>
-                            <li><label for="message">Message:</label></li>
-                            <li><input type="text" id="message" name="message" required maxlength="25" size="10"></input></li>
-                        </ul>
-                    }
+                    {calcNow<0.2  && <PopupInnerInput finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger}/>}
                 </div>
             </div>
         </Draggable>
     )
 }
-function useInterval(callback, delay) {         // useInterval Custom Hook 선언
-    const savedCallback = useRef();
-  
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-  
-    useEffect(() => {
-      function tick() {
-        savedCallback.current();
-      }
-      if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
-}
+

@@ -14,8 +14,12 @@
   --section-hover-color: #ffffff;
   --off-editor-text-color: #bebebe;
   --on-editor-text-color: #585858;
-  --popup-background-color: rgba(255,255,255,0.2);
+  --popup-background-color: rgba(255,255,255,0.3);
   --popup-inner-contents-background-color: #f6f6f6;
+  --popup-inner-contents-font-color: #7f7f7f;
+  --input-area-color: #f9f9f9;
+  --input-area-border-color: #e3e3e3;
+  --input-area-hover-color: #f1f1f1;
   background-color: #fcfcfc;
   transition: background-color 0.3s;
 }
@@ -34,8 +38,12 @@
   --section-hover-color: #2c313a;
   --off-editor-text-color: #585858;
   --on-editor-text-color: #bebebe;
-  --popup-background-color: rgba(0,0,0,0.2);
+  --popup-background-color: rgba(0,0,0,0.3);
   --popup-inner-contents-background-color: #252931;
+  --popup-inner-contents-font-color: #c6c6c6;
+  --input-area-color: #2d323b;
+  --input-area-border-color: #22262d;
+  --input-area-hover-color: rgb(40, 45, 52);
   background-color: #2b2b2b;
   transition: background-color 0.3s;
 }
@@ -136,18 +144,19 @@ body {
 .popup-inner {
   position: absolute;
   left: calc(100vw/2 - 324px);
-  top: calc(100vh/2 - 229px);
+  top: calc(100vh/2 - 244px);
   width: 648px;
-  height: 458px;
+  height: 489x;
   border-radius: 11px;
   background-color: var(--form-background-color);
   display:flex;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  color: var(--popup-inner-contents-font-color);
 }
 
 .popup-inner-contents {
   width: 648px;
-  height: 432px;
+  height: 458px;
   margin-top: 26px;
   background-color: var(--popup-inner-contents-background-color);
   border-bottom-left-radius: 11px;
@@ -156,12 +165,12 @@ body {
 
 .popup-inner-contents-info{
   width: auto;
-  height: 140px;
+  height: 120px;
   text-align: center;
   padding-top: 55px;
   font-weight: normal;
   font-style: normal;
-  color: var(--section-header-color);
+  color: var(--popup-inner-contents-font-color);
   transition: all 0.3s;
 }
 
@@ -181,10 +190,50 @@ body {
 }
 
 .popup-info-ul input{
+  margin: 5px auto 15px;
+  padding-left: 10px;
   width: 213px;
   height: 32px; 
+  display: block;
+  font-size: 14px;
+  border-radius: 8px;
+  color: var(--popup-inner-contents-color);
+  border: 1px solid var(--input-area-border-color);
+  background-color: var(--input-area-color);
+}
+.popup-inner-ul li {
+  display: block;
+}
+.popup-info-ul label {
+  font-size: 15px;
+  display: block;
+  margin: auto 214.5px;
+  text-align: left;
 }
 
+.popup-info-ul button{
+  width: 117px;
+  height: 32px; 
+  font-size: 15px;
+  border-radius: 9px;
+  margin: 35px 8px 0px 8px;
+  border: 1px solid var(--input-area-border-color);
+  color: var(--popup-inner-contents-color);
+  background-color: var(--input-area-color);
+}
+
+.popup-info-ul button:hover {
+  background-color: var(--input-area-hover-color);
+}
+
+.popup-info-ul button:nth-child(2) {
+  background-color: #3F85F7;
+  color: white;
+}
+
+.popup-info-ul button:nth-child(2):hover{
+  background-color: #0170eb;
+}
 
 .form {
   width: 1222px;

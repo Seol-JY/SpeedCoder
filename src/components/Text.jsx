@@ -4,7 +4,6 @@ import { setCorrectchr } from '../redux/correct/actions'
 import {setWrongchr} from '../redux/wrong/actions'
 import getFilecontents from '../filecontents'
 
-
 function Text(props) {
     //const colormap = file.colormap
     const [textSplit, setTextSplit] = useState([]);
@@ -20,6 +19,7 @@ function Text(props) {
     useEffect(()=>{
         const len = textSplit.length;
         props.setFileLength(len);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[textSplit])
 
     useEffect(()=>{
@@ -30,6 +30,7 @@ function Text(props) {
     useEffect(() => {
         props.setCorrectchr(correct);
         props.setWrongchr(wrong);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     })
 
     return (   

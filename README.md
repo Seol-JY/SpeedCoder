@@ -36,6 +36,8 @@ FastCoder
             ├── reducer.js
             └── types.js
 ```
+
+
 ## 업데이트
 - 코드 리펙토링
 - 창 이동
