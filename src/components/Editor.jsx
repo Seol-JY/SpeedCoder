@@ -1,7 +1,7 @@
 import Text from "./Text"
 import { useEffect, useState } from 'react'
 
-export default function Editor({file, setFileLength, section, daynight, finishTrigger}) {
+export default function Editor({file, fileLength, setFileLength, section, daynight, finishTrigger}) {
 
   const [userInput, setuserInput] = useState("");
   const [f, sF] = useState();
@@ -15,6 +15,7 @@ export default function Editor({file, setFileLength, section, daynight, finishTr
   }
   const userInputHandler = (event) => {    //input창 내용을 userinput에 반영
     setuserInput(event.currentTarget.value);
+    if(fileLength===userInput.length) document.querySelector(".textbox").blur();
   }
   
   if (f!==file){  // 파일 변경시 내용 초기화
@@ -28,7 +29,7 @@ export default function Editor({file, setFileLength, section, daynight, finishTr
   }
   
   useEffect(()=>{
-    if (finishTrigger!==-1) {
+    if (finishTrigger===-1) {
       setuserInput("");
     }
   },[finishTrigger])

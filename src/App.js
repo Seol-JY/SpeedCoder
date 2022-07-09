@@ -49,7 +49,7 @@ function App() {
 
           <ul>
             <li><Topbar file={file}/></li>
-            <li><Editor file={file} setFileLength={setFileLength} section={section} daynight={daynight} finishTrigger={finishTrigger}/></li>
+            <li><Editor file={file} fileLength={fileLength} setFileLength={setFileLength} section={section} daynight={daynight} finishTrigger={finishTrigger}/></li>
           </ul>
           
         </div>
