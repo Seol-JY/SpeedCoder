@@ -16,7 +16,7 @@ export default function PopupInnerInput({finishTrigger, setFinishTrigger}) {
             <li><label>Message:<input type="text" ref={messageInput} id="message" name="message" required maxLength="25"></input></label></li>
             <div>
                 <button onClick={()=>{setFinishTrigger(-1)}}>Cancel</button>
-                <button onClick={()=>{setPushData(finishTrigger.toString(), nameInput.current.value, messageInput.current.value); setFinishTrigger(-1)}}> Push </button>
+                <button onClick={()=>{setPushData(finishTrigger.toString(), nameInput.current.value, messageInput.current.value) && setFinishTrigger(-1)}}> Push </button>
             </div>
         </ul>
     )

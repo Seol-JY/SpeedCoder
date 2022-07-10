@@ -12,10 +12,12 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
         event.preventDefault();
         setuserInput(userInput + '    ');
     }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+    }
   }
   const userInputHandler = (event) => {    //input창 내용을 userinput에 반영
     setuserInput(event.currentTarget.value);
-    if(fileLength===userInput.length) document.querySelector(".textbox").blur();
   }
   
   if (f!==file){  // 파일 변경시 내용 초기화
@@ -41,7 +43,7 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
     return (
       <div className="editor" onClick={focus}>
         <div className="numbering">1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26</div>
-        <textarea  className="textbox" value={userInput} onKeyDown={userInputTabHandler} onChange={userInputHandler}></textarea>
+        <textarea  className="textbox" maxLength={fileLength} value={userInput} onKeyDown={userInputTabHandler} onChange={userInputHandler}></textarea>
         <Text userInput={userInput} file = {file} setFileLength = {setFileLength} daynight={daynight} />
       </div>
     )
