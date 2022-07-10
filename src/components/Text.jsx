@@ -40,8 +40,8 @@ function Text(props) {
                     let color;  
                     let colortxt;
 
-                    if (i < user.length) {  
-                        if (s === userSplit[i]) {   //correct
+                    if (i < user.length) {
+                        if (s === userSplit[i] || s==="\n") {   //correct (개행시 어떤값이든 PASS)
                             color = '';
                             colortxt = themeColor;
                             correct++;

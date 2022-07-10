@@ -16,8 +16,9 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
       event.preventDefault();
     }
   }
+
   const userInputHandler = (event) => {    //input창 내용을 userinput에 반영
-    setuserInput(event.currentTarget.value);
+    setuserInput(event.currentTarget.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,''));
   }
   
   if (f!==file){  // 파일 변경시 내용 초기화
