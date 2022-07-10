@@ -1,8 +1,9 @@
 # Fast Coder
 개발자를 위한 타자연습 사이트
 
-![1](https://i.imgur.com/l87DvjT.gif)
+![1](https://i.imgur.com/l87DvjT.gif)  
 
+[데모버전 사용해보기](https://zingy-pastelito-4942b8.netlify.app/)
 ## 구조
 ```
 FastCoder
