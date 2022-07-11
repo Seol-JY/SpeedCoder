@@ -10,7 +10,7 @@ export default function useInterval(callback, delay) {         // useInterval Cu
   
     useEffect(() => {
       function tick() {
-        savedCallback.current();
+        savedCallback.current(); 
       }
       if (delay !== null) {
         let id = setInterval(tick, delay);
