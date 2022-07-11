@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
+import * as ReactDOM from 'react-dom/client';
 import App from './App';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
     <div className='mainWrapper'>
       <pre style={{margin:"0", fontSize: "20px", position: "absolute", left: "calc(100vw/2 - 360px)", top: "calc(100vh/2 - 230px)"}}>{`
   _______                          __   ______            __
@@ -17,6 +18,5 @@ ReactDOM.render(
                |___|  |__|__||___._||__|__||__|__||_____|
       `}</pre>
       <App />
-    </div>,
-  document.getElementById('root')
+    </div>
 );
