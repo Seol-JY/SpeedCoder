@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { connect } from 'react-redux'
 import { setCorrectchr } from '../redux/correct/actions'
 import {setWrongchr} from '../redux/wrong/actions'
@@ -39,19 +39,24 @@ function Text(props) {
                 textSplit.map((s,i) => {
                     let color;  
                     let colortxt;
+                    let wrongLineBreak;
 
                     if (i < user.length) {
-                        if (s === userSplit[i] || s==="\n") {   //correct (개행시 어떤값이든 PASS)
+                        if (s === userSplit[i]) {   //correct (개행시 어떤값이든 PASS)
                             color = '';
                             colortxt = themeColor;
                             correct++;
+                        } else if(s==="\n" && userSplit[i]!=="\n") {
+                            wrongLineBreak = true;
+                            wrong++;
                         } else {                    //wrong
                             color = '#ff5c5c';
                             colortxt = "white";
                             wrong++;
                         }
                     }
-                    return (<pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>{user.length===i?<div className="cursor">_</div>:""}{s}</pre>);
+                    const chr = i===user.length-1?(userSplit[i]==="\n" || s==="\n"?s:userSplit[i]):s;
+                    return (<pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>{user.length===i?<div className="cursor">_</div>:""}{wrongLineBreak?<div className="wrong-line-break"></div>:""}{chr}</pre>);
                 })
 
             }

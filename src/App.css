@@ -271,6 +271,16 @@ body {
   animation: blink-effect 1s step-end infinite;
 }
 
+.wrong-line-break {
+  width: 3px;
+  height: 3px;
+  border-bottom: 2px solid #ff5c5c;
+  border-right: 2px solid #ff5c5c;
+  background: rgba(0, 0, 0, 0);
+  display: inline-block;
+  font-weight: border;
+}
+
 pre {
   font-family: 'D2coding';
   color: var(--off-editor-text-color);
