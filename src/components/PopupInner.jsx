@@ -4,7 +4,7 @@ import Draggable from "react-draggable";
 import useInterval from '../hooks/useInterval'
 import PopupInnerInput from './PopupInnerInput';
 
-export default function PopupInner({finishTrigger, setFinishTrigger}) {
+export default function PopupInner({file, finishTrigger, setFinishTrigger}) {
     // eslint-disable-next-line
     const [position, setPosition] = useState({ x: 0, y: 0 }); 
     const [animation, setAnimation] = useState("slide-in-blurred-bl");
@@ -38,7 +38,7 @@ export default function PopupInner({finishTrigger, setFinishTrigger}) {
                         <p>{String(displayCpm).padStart(4,'0')}</p>
                         <p>/cpm</p>
                     </div>
-                    {calcNow<0.2  && <PopupInnerInput finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger}/>}
+                    {calcNow<0.2  && <PopupInnerInput file={file} finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger}/>}
                 </div>
             </div>
         </Draggable>

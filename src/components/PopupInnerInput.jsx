@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import setPushData from "../utils/setPushData";
+import { connect } from 'react-redux'
 
-export default function PopupInnerInput({finishTrigger, setFinishTrigger}) {
+function PopupInnerInput({file, finishTrigger, setFinishTrigger, Correctchr, Wrongchr}) {
     const nameInput = useRef();
     const messageInput = useRef();
     
@@ -16,8 +17,17 @@ export default function PopupInnerInput({finishTrigger, setFinishTrigger}) {
             <li><label>Message:<input type="text" ref={messageInput} id="message" name="message" required maxLength="25"></input></label></li>
             <div>
                 <button onClick={()=>{setFinishTrigger(-1)}}>Cancel</button>
-                <button onClick={()=>{setPushData(finishTrigger.toString(), nameInput.current.value, messageInput.current.value) && setFinishTrigger(-1)}}> Push </button>
+                <button onClick={()=>{setPushData(file, finishTrigger.toString(), nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr) && setFinishTrigger(-1)}}> Push </button>
             </div>
         </ul>
     )
 }
+
+const mapStateToProps = (state) => {        // Redux  구문
+    return {    
+        Correctchr: state.correct.Correctchr,
+        Wrongchr: state.wrong.Wrongchr,
+    }
+  }
+  
+  export default connect(mapStateToProps)(PopupInnerInput) 

@@ -364,6 +364,21 @@ ul {
   transition: all 0.3s;
 }
 
+.sidebarsection-explorer {
+  height: 415px;
+  overflow-y: overlay;
+  overflow-x:hidden;
+}
+.sidebarsection-explorer::-webkit-scrollbar {
+  width: 7px;
+}
+
+.sidebarsection-explorer::-webkit-scrollbar-thumb {
+
+  background-color: hsla(0, 0%, 42%, 0.169);
+  border-radius: 100px;
+}
+
 .sidebarsection-header {
   width: 176px;
   height: 35px;
@@ -379,7 +394,7 @@ ul {
 }
 
 .sidebarsection-list {
-  width: 179px;
+  width: 169px;
   height: 22px;
   text-align: left;
   line-height: 23px;
@@ -394,7 +409,7 @@ ul {
 }
 
 .sidebarsection-listactive {
-  width: 179px;
+  width: 169px;
   height: 22px;
   text-align: left;
   line-height: 23px;
@@ -408,9 +423,6 @@ ul {
   transition: background-color 0.3s;
 }
 
-.sidebarsection-list:nth-child(n+5) {               /*Sidebar list Visibility*/
-  visibility: hidden;
-}
 
 .sidebarsection-list:hover {
   background-color: var(--section-hover-color);
@@ -420,7 +432,7 @@ ul {
 
 .sidebarsection-debug {
   width: 179px;
-  height: 140px;
+  height: 215px;
   text-align: left;
   line-height: 21px;
   padding-left: 5px;

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { setCorrectchr } from '../redux/correct/actions'
 import {setWrongchr} from '../redux/wrong/actions'
