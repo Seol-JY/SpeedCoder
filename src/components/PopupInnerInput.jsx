@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import setPushData from "../utils/setPushData";
+import localStore from "../utils/localStore";
 import { connect } from 'react-redux'
 
 function PopupInnerInput({file, finishTrigger, setFinishTrigger, Correctchr, Wrongchr}) {
@@ -17,7 +17,7 @@ function PopupInnerInput({file, finishTrigger, setFinishTrigger, Correctchr, Wro
             <li><label>Message:<input type="text" ref={messageInput} id="message" name="message" required maxLength="25"></input></label></li>
             <div>
                 <button onClick={()=>{setFinishTrigger(-1)}}>Cancel</button>
-                <button onClick={()=>{setPushData(file, finishTrigger.toString(), nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr) && setFinishTrigger(-1)}}> Push </button>
+                <button onClick={()=>{localStore.insertData(file, finishTrigger, nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr) && setFinishTrigger(-1)}}> Push </button>
             </div>
         </ul>
     )

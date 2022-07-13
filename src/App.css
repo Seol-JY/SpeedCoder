@@ -488,25 +488,87 @@ ul {
 }
 
 .sidebarsection-rank {
-  width: 179px;
-  height: 140px;
-  text-align: left;
-  line-height: 21px;
-  padding-left: 5px;
+  width: 184px;
+  height: 680px;
+  background-color: var(--sidebar-background-color);
+  transition: all 0.3s;
+  overflow-y: overlay;
+  overflow-x:hidden;
+}
+
+.sidebarsection-rank::-webkit-scrollbar {
+  width: 7px;
+}
+
+.sidebarsection-rank::-webkit-scrollbar-thumb {
+
+  background-color: hsla(0, 0%, 42%, 0.169);
+  border-radius: 100px;
+}
+
+.sidebarsection-rank-items{
+  display:flex;
+  flex-direction:row;
+  border: 1px solid var(--sidebarbutton-background-color);
+  margin: 3px 0;
+  padding: 4px 5px;
+  height: 43px;
   font-weight: normal;
   font-style: normal;
   color: var(--section-header-color);
-  font-size: 13px;  /* Preferred icon size */
-  background-color: var(--sidebar-background-color);
   transition: all 0.3s;
 }
-
-.sidebarsection-rank p:nth-child(1){
-  display: inline-block;
+.sidebarsection-rank p {
   margin: 0;
-  margin-left: 15px;
-  margin-top: 20px;
+  padding: 0;
+  display: block;
+}
+
+.sidebarsection-rank-items ul:nth-child(1) {
+  margin: auto 0;
+  overflow-x: hidden;
+  width: 69px;
+}
+.sidebarsection-rank-items ul:nth-child(2) {
+  margin: auto 0;
+  overflow-x: hidden;
+  width: 100px;
+}
+.sidebarsection-rank-items ul:nth-child(1) p:nth-child(1) {
+  display: inline-block;
   font-size: 22px;
+  text-align: center; 
+}
+.sidebarsection-rank-items ul:nth-child(1) p:nth-child(1) span{
+  display: inline-block;
+  font-size: 14px; 
+}
+
+.sidebarsection-rank-items ul:nth-child(1) p:nth-child(2) {
+  display: block;
+  font-size: 10px;
+  text-align: center; 
+}
+
+.sidebarsection-rank-items ul:nth-child(2) p:nth-child(1) {
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.sidebarsection-rank-items ul:nth-child(2) p:nth-child(2) {
+  font-size: 10px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.sidebarsection-rank-items ul:nth-child(2) p:nth-child(3) {
+  font-size: 7px;
+  text-align: left; 
 }
 
 .numbering {

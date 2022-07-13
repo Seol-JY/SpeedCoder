@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Debug from "./Debug";
+import LeaderBoard from "./LeaderBoard"
 
 export default function Sidebar(props) {
   const [filestate, setFilestate] = useState("sample1.py");
@@ -24,14 +25,8 @@ export default function Sidebar(props) {
   } else if (props.section === "2") {
     return(
       <div className="sidebar">
-        <ul>
-          <li className="sidebarsection-header">RANKING</li>
-          <li>
-            <div className="sidebarsection-rank">
-              <p>Comming Soon!</p>
-            </div>
-          </li>
-        </ul>
+        <ul><li className="sidebarsection-header">RANKING</li></ul>
+        <LeaderBoard />
       </div>
     )
   }
