@@ -6,8 +6,8 @@ module.exports = {
             {
                 "file": "dummy",
                 "cpm": Math.floor(Math.random() * (1100 - 10)) + 10,
-                "name": "dummy name",
-                "message": "dummy data",
+                "name": "dummy name"+i,
+                "message": "dummy data"+i,
                 "correctChr": 1,
                 "wrongChr": 1
             }
