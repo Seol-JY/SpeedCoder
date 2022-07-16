@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Debug from "./Debug";
 import LeaderBoard from "./LeaderBoard"
 
 export default function Sidebar(props) {
   const [filestate, setFilestate] = useState("sample1.py");
   const filename = ["sample1.py", "sample2.js", "sample3.js"];
+  useEffect(()=> {
+    if(props.section==="1") {
+      setFilestate(filestate);
+      props.setFile(filestate);
+    }
+    else if(props.section==="2") {
+      props.setFile("Ranking");
+    }
+  }, [props.section])
   if (props.section === "1") {
     return(
       <div className="sidebar">

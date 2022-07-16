@@ -15,7 +15,7 @@ function Debug({filestate, Correctchr, Wrongchr, fileLength, setFinishTrigger}) 
   },[filestate, fileLength])
 
   useEffect(()=>{   
-    if (!(Wrongchr+Correctchr)) {
+    if (!(Wrongchr+Correctchr)) {  // 입력값이 없어지면 cpm 초기화 
       setTerval(null);
       setCount(0);
       setCpm("0000");
