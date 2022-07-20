@@ -1,14 +1,11 @@
 import { useEffect, useRef } from "react";
 import localStore from "../utils/localStore";
+import fetcher from "../utils/fetcher";
 import { connect } from 'react-redux'
 
 function PopupInnerInput({file, finishTrigger, setFinishTrigger, Correctchr, Wrongchr}) {
     const nameInput = useRef();
     const messageInput = useRef();
-    
-    useEffect(()=>{
-        nameInput.current.focus();
-    },[])
 
    //Commit버튼 Getter 함수
    return (
@@ -17,7 +14,8 @@ function PopupInnerInput({file, finishTrigger, setFinishTrigger, Correctchr, Wro
             <li><label>Message:<input type="text" ref={messageInput} id="message" name="message" required maxLength="25"></input></label></li>
             <div>
                 <button onClick={()=>{setFinishTrigger(-1)}}>Cancel</button>
-                <button onClick={()=>{localStore.insertData(file, finishTrigger, nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr) && setFinishTrigger(-1)}}> Push </button>
+                {/* localStore.insertData(file, finishTrigger, nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr) */}
+                <button onClick={ ()=>{ fetcher.save(file, finishTrigger, nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr, (bool)=>{if(bool) setFinishTrigger(-1 );})}}> Push </button>
             </div>
         </ul>
     )

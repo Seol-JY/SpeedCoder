@@ -11,7 +11,7 @@ const app = express();
 
 const home = require("./src/routes/home");
 
-app.use(express.static(`${__dirname}/views`));
+app.use(express.static(`${__dirname}/src/views`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
