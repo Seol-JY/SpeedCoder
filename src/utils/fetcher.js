@@ -29,4 +29,18 @@ export default {
               })
         }
     },
+
+    load: (page) => {
+        return new Promise((resolve, reject)=>{
+            fetch('/records?page='+page, {
+                method: 'GET',
+            })
+            .then((res) => {
+                resolve(res.json());
+            }).catch((err)=>{
+                reject(err);
+            })
+        })
+        
+    }
 };

@@ -2,9 +2,9 @@
 const Record = require("../../model/Record")
 
 const output = {
-    main: (res, req) => {
+    main: (req, res) => {
         res.sendfile("../../views/index.html"); 
-    }
+    },
 }
 
 const process = {
@@ -14,7 +14,17 @@ const process = {
         const url = {
             method: "POST",
             path: "/records",
-            status: response.err ?  409 : 201
+            status: response.success ?  201 : 409
+        };
+        return res.status(url.status).json(response);
+    },
+
+    getRecordByPage: async(req, res) =>{
+        const response = await Record.selectRecordByPage(req.query.page);
+        const url = {
+            method: "GET",
+            path: "/records",
+            status: response ?  200 : 409
         };
         return res.status(url.status).json(response);
     }

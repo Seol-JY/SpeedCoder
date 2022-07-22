@@ -20,12 +20,25 @@ module.exports = {
         
     },
 
-    selectData: ()=>{
+    selectData: (page)=>{
         let storage = JSON.parse(localStorage.getItem("rankStore")) || [];                        //for test
         storage.sort(function(a, b){
             return b.cpm - a.cpm;
         })
-        return storage;
+
+        let rank = 1;
+        let idx = 100000;
+        for (let i = 0; i < storage.length; i++) {
+        if (i > 0 && storage[i].cpm < storage[i - 1].cpm) {
+            rank++;
+        }
+            storage[i].rank = rank;
+            storage[i].idxx = idx++;
+        }
+        const start = (page-2)*30 > 0 ? (page-2)*30 : 0;
+        const end = (page+1)*30+1<=storage.length-1? (page+1)*30 : storage.length-1;
+        console.log("start"+start+"end"+end);
+        return storage.slice(start, end);
     },
 
     insertData: (file, cpm, name, message, correctChr, wrongChr) => {
