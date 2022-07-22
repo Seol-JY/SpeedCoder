@@ -1,1 +1,1 @@
-export const SET_WRONGCHR = 'SET_WRONGCHR'
+export const SET_WRONGCHR = "SET_WRONGCHR";

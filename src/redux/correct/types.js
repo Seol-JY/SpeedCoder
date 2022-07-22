@@ -1,1 +1,1 @@
-export const SET_CORRECTCHR = 'SET_CORRECTCHR'
+export const SET_CORRECTCHR = "SET_CORRECTCHR";

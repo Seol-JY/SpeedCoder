@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "node ./server/bin/www.js",
+    "server": "npm run build\n node ./server/bin/www.js",
     "build": "BUILD_PATH='./server/src/views' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

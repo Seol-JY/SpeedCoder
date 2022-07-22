@@ -5,63 +5,77 @@ import {setWrongchr} from '../redux/wrong/actions'
 import getFilecontents from '../filecontents'
 
 function Text(props) {
-    //const colormap = file.colormap
-    const [textSplit, setTextSplit] = useState([]);
-    const [themeColor, setThemeColor] = useState("");
-    let wrong = 0, correct = 0;
-    const user  = props.userInput;
-    const userSplit = user.split(''); 
-    
-    useEffect(()=>{
-        setTextSplit(getFilecontents(props.file).content);
-    },[props.file]);
+  //const colormap = file.colormap
+  const [textSplit, setTextSplit] = useState([]);
+  const [themeColor, setThemeColor] = useState("");
+  let wrong = 0,
+    correct = 0;
+  const user = props.userInput;
+  const userSplit = user.split("");
 
-    useEffect(()=>{
-        const len = textSplit.length;
-        props.setFileLength(len);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[textSplit])
+  useEffect(() => {
+    setTextSplit(getFilecontents(props.file).content);
+  }, [props.file]);
 
-    useEffect(()=>{
-        if(props.daynight%2===1) setThemeColor("#585858");
-        else setThemeColor("#BEBEBE");
-    }, [props.daynight])
+  useEffect(() => {
+    const len = textSplit.length;
+    props.setFileLength(len);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [textSplit]);
 
-    useEffect(() => {
-        props.setCorrectchr(correct);
-        props.setWrongchr(wrong);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    })
+  useEffect(() => {
+    if (props.daynight % 2 === 1) setThemeColor("#585858");
+    else setThemeColor("#BEBEBE");
+  }, [props.daynight]);
 
-    return (   
-        <div className="textdisplay">
-            {
-                textSplit.map((s,i) => {
-                    let color;  
-                    let colortxt;
-                    let wrongLineBreak;
+  useEffect(() => {
+    props.setCorrectchr(correct);
+    props.setWrongchr(wrong);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
 
-                    if (i < user.length) {
-                        if (s === userSplit[i]) {   //correct (개행시 어떤값이든 PASS)
-                            color = '';
-                            colortxt = themeColor;
-                            correct++;
-                        } else if(s==="\n" && userSplit[i]!=="\n") {
-                            wrongLineBreak = true;
-                            wrong++;
-                        } else {                    //wrong
-                            color = '#ff5c5c';
-                            colortxt = "white";
-                            wrong++;
-                        }
-                    }
-                    const chr = i===user.length-1?(userSplit[i]==="\n" || s==="\n"?s:userSplit[i]):s;
-                    return (<pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>{user.length===i?<div className="cursor">_</div>:""}{wrongLineBreak?<div className="wrong-line-break"></div>:""}{chr}</pre>);
-                })
+  return (
+    <div className="textdisplay">
+      {textSplit.map((s, i) => {
+        
+        let color;
+        let colortxt;
+        let wrongLineBreak;
 
-            }
-        </div>
-    )
+        if (i < user.length) {
+          if (s === userSplit[i]) {
+            //correct (개행시 어떤값이든 PASS)
+            color = "";
+            colortxt = themeColor;
+            correct++;
+          } else if (s === "\n" && userSplit[i] !== "\n") {
+            wrongLineBreak = true;
+            wrong++;
+          } else {
+            //wrong
+            color = "#ff5c5c";
+            colortxt = "white";
+            wrong++;
+          }
+        }
+
+        const chr =
+          i === user.length - 1
+            ? userSplit[i] === "\n" || s === "\n"
+              ? s
+              : userSplit[i]
+            : s;
+
+        return (
+          <pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>
+            {user.length === i ? <div className="cursor">_</div> : ""}
+            {wrongLineBreak ? <div className="wrong-line-break"></div> : ""}
+            {chr}
+          </pre>
+        );
+      })}
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {

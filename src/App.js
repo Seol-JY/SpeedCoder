@@ -15,13 +15,13 @@ function App() {
   const [section, setSection] = useState("1");
   const [file, setFile] = useState("sample1.py");
   const [fileLength, setFileLength] = useState(928);
-  const [position, setPosition] = useState({ x: 0, y: 0 }); 
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [daynight, setdaynight] = useState(1);
   const [finishTrigger, setFinishTrigger] = useState(-1);
 
   useEffect(()=>{
     egg();
-},[])
+  },[])
 
   const trackPos = (data) => {
 	  setPosition({ x: data.x, y: data.y }); 
@@ -38,6 +38,7 @@ function App() {
           <h1 onClick={ ()=>{ setPosition({ x: 0, y: 0 })}}>
             Speed Coder - Insiders
           </h1>
+          
           <ul className='circlewrapper' onClick={easteregg}>
             <li className='circle'><div></div></li>
             <li className='circle'><div></div></li>
