@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Debug from "./Debug";
 import LeaderBoard from "./LeaderBoard"
+import IconGenerator from "./IconGenerator";
 
 export default function Sidebar(props) {
   const [filestate, setFilestate] = useState("sample1.py");
-  const filename = ["sample1.py", "sample2.js", "sample3.js"];
+  const filename = ["sample1.py", "hello.txt"];
   useEffect(()=> {
     if(props.section==="1") {
       setFilestate(filestate);
@@ -21,7 +22,7 @@ export default function Sidebar(props) {
           <ul className="sidebarsection-explorer">
             {
               filename.map((s, i) => {
-                return <li key={i} className={"sidebarsection-list"+(filestate===s?'active':'')} onClick={()=>{props.setFile(s); setFilestate(s)}}>{s}</li>
+                return <li key={i} className={"sidebarsection-list"+(filestate===s?'active':'')} onClick={()=>{props.setFile(s); setFilestate(s)}}><IconGenerator file={s} height={"13px"} />{s}</li>
               })
             }
           </ul>

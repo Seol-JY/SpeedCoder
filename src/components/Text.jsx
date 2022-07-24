@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { setCorrectchr } from '../redux/correct/actions'
 import {setWrongchr} from '../redux/wrong/actions'
-import getFilecontents from '../filecontents'
+import getFilecontents from '../utils/filecontents'
 
 function Text(props) {
   //const colormap = file.colormap

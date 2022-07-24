@@ -55,7 +55,7 @@ function App() {
           
         </div>
       </Draggable>
-      <Popup file={file} finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger}/>
+      {finishTrigger !== -1 ? <Popup file={file} finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger}/> : ""}
     </Provider>
   );
 }

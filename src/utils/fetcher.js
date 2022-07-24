@@ -26,7 +26,7 @@ export default {
           }
         })
         .catch((err) => {
-          alert(err);
+          alert("서버 연결이 원활하지 않습니다.\n ["+err+"]");
         });
     }
   },

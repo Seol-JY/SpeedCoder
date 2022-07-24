@@ -1,10 +1,14 @@
-import { useRef } from "react";
+import { useEffect,useRef } from "react";
 import fetcher from "../utils/fetcher";
 import { connect } from 'react-redux'
 
 function PopupInnerInput({file, finishTrigger, setFinishTrigger, Correctchr, Wrongchr}) {
     const nameInput = useRef();
     const messageInput = useRef();
+
+    useEffect(()=>{
+        nameInput.current.focus();
+    },[])
 
     const sendResult = ()=>{ fetcher.save(file, finishTrigger, nameInput.current.value, messageInput.current.value, Correctchr, Wrongchr, (bool)=>{if(bool) setFinishTrigger(-1 );})}
 

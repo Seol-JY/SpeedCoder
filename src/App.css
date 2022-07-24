@@ -259,6 +259,7 @@ body {
   border-radius: 9px;
   margin: 35px 8px 0px 8px;
   border: 1px solid var(--input-area-border-color);
+  cursor: pointer;
   color: var(--popup-inner-contents-color);
   background-color: var(--input-area-color);
 }
@@ -392,10 +393,11 @@ ul {
 }
 
 .filename {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   height: 35px;
   text-align: left;
-  line-height: 38px;
   padding-left: 10px;
   padding-right: 17px;
   float: left;
@@ -438,11 +440,13 @@ ul {
 }
 
 .sidebarsection-list {
-  width: 169px;
+  width: 178px;
   height: 22px;
   text-align: left;
-  line-height: 23px;
-  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
   font-weight: normal;
   font-style: normal;
   color: var(--section-header-color);
@@ -453,11 +457,13 @@ ul {
 }
 
 .sidebarsection-listactive {
-  width: 169px;
+  width: 178px;
   height: 22px;
   text-align: left;
-  line-height: 23px;
-  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
   font-weight: normal;
   font-style: normal;
   color: var(--section-header-color);
@@ -692,4 +698,10 @@ ul {
   height: 35px;
   background-color: var(--topbar-background-color);
   transition: background-color 0.3s;
+}
+
+.fileicon {
+  object-fit: cover;
+  display: inline-block;
+  margin: 0 5px 0 0;
 }

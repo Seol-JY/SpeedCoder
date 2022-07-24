@@ -7,14 +7,7 @@ const getFilecontents = (filename) => {
         colormap: "",
       };
 
-    case "sample2.js":
-      return {
-        content:
-          "test code\n    hello world\n        fooooooobarrrrrrrbazzzzzzzzzfoooobarrrbazzzz".split(""),
-        colormap: "",
-      };
-
-    case "sample3.js":
+    case "hello.txt":
       return {
         content: "test code\n    hello world".split(""),
         colormap: "",
