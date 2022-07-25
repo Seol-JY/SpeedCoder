@@ -5,7 +5,7 @@ import IconGenerator from "./IconGenerator";
 
 export default function Sidebar(props) {
   const [filestate, setFilestate] = useState("sample1.py");
-  const filename = ["sample1.py", "hello.txt"];
+  const filename = ["sample1.py", "hello.java", "hello.txt", "www.js"];
   useEffect(()=> {
     if(props.section==="1") {
       setFilestate(filestate);
