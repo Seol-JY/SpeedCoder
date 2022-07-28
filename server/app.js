@@ -4,7 +4,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
-  path: "./server/.env",
+  path: "./.env",
 });
 const morgan = require("morgan");
 const app = express();
