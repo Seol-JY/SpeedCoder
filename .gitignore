@@ -8,6 +8,9 @@ server/.yarn/*
 !server/.yarn/releases
 !server/.yarn/sdks
 !server.yarn/versions
+
+client/node_modules/*
+
 client/.yarn/*
 !client/.yarn/cache
 !client/.yarn/patches
