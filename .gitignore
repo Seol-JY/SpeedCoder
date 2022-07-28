@@ -1,15 +1,26 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules/
-/.pnp
-.pnp.js
+server/.yarn/*
+!server/.yarn/cache
+!server/.yarn/patches
+!server/.yarn/plugins
+!server/.yarn/releases
+!server/.yarn/sdks
+!server.yarn/versions
+client/.yarn/*
+!client/.yarn/cache
+!client/.yarn/patches
+!client/.yarn/plugins
+!client/.yarn/releases
+!client/.yarn/sdks
+!client.yarn/versions
 
 # testing
 /coverage
 
 # production
-/build
+/server/src/views/
 
 # misc
 *.env
@@ -22,6 +33,3 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# build
-/server/src/views/
