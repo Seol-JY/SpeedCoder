@@ -1,4 +1,4 @@
-export default {
+module.exports =  {
   save: (file, cpm, name, message, correctChr, wrongChr, callback) => {
     if (name.length && message.length) {
       const result = {
