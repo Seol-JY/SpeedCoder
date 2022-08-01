@@ -14,7 +14,6 @@ module.exports = {
     client.connect(function (err, db) {
       if (db) {
         _db = db.db("speedcoder");
-        console.log("MongoDB Connection Status: OK");
       }
       return callback(err);
     });

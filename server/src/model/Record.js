@@ -1,5 +1,6 @@
 "use strict";
 const RecordStorage = require("./RecordStorage");
+const logger = require("../config/logger");
 
 class Record {
   constructor(body) {
@@ -10,6 +11,7 @@ class Record {
     const _record = this.body;
     try {
       const response = await RecordStorage.save(_record);
+      logger.info(`Result is stored in Database: ${_record.file}-${_record.cpm}-${_record.name}-${_record.message}-${_record.correctChr}-${_record.wrongChr}`)
       return response;
     } catch (err) {
       return { success: false, msg: err };
@@ -31,7 +33,7 @@ class Record {
           : response.length - 1;
       return response.slice(start, end);
     } catch (err) {
-      console.log(err);
+      logger.err(`Failed to process database! ${err}`);
       return 0;
     }
   }

@@ -10,10 +10,12 @@
     "express": "4.18.1",
     "mongodb": "^4.8.1",
     "morgan": "^1.10.0",
-    "winston": "^3.8.1"
+    "nodemon": "^2.0.19",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "scripts": {
-    "start": "yarn node ./bin/www.js"
+    "start": "yarn nodemon ./bin/www.js"
   },
   "packageManager": "yarn@3.2.2"
 }

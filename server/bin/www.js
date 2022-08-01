@@ -5,8 +5,10 @@ const logger = require("../src/config/logger")
 const PORT = process.env.PORT || 3000; 
 
 app.listen(PORT, () => {
+    logger.info("Server Start... ");
+    logger.info(`Server listening on port ${PORT}`);
     dbo.connectToServer((err)=>{
-        if (err) console.error(err);
+        if (err) logger.err(`MongoDB Connect Fail!\n${err}`);
     })
-    logger.info("Server Start... "+"PORT: "+PORT);
+    logger.info("MongoDB Connection... OK.")
 });

@@ -1,19 +1,20 @@
 const { createLogger, transports, format} = require("winston");
+const winstonDaily = require('winston-daily-rotate-file')
 const { printf, combine, timestamp, label, simple, colorize} = format;
 
 const printFormat = printf(({ timestamp, label, level, message })=>{
-    return `${timestamp} [${label}] ${level} : ${message}`
+    return `[${label}] [${timestamp}] ${level}: ${message}`
 })
 
 const logFormat = {
     file: combine(
         label({
-            label: "맛보기"
+            label: "Server"
         }),
         timestamp({
             format: "YYYY-MM-DD HH:mm:dd",
         }),
-        printFormat
+        printFormat 
     ),
     console: combine(
         colorize(),
@@ -22,11 +23,24 @@ const logFormat = {
 }
 
 const opts = {
-    file: new transports.File({
-        filename: "access.log",
-        dirname: "./logs",
+    fileInfo: new winstonDaily({
+        datePattern: 'YYYY-MM-DD',
+        filename: `%DATE%.log`,
+        dirname: "./logs/info",
+        maxFiles: 7,
         level: "info",
-        format: logFormat.file
+        format: logFormat.file,
+        zippedArchive: true,
+    }),
+    fileError: new winstonDaily({
+        datePattern: 'YYYY-MM-DD',
+        filename: `%DATE%.error.log`,
+        dirname: "./logs/error",
+        maxFiles: 7,
+        level: "error",
+        format: logFormat.file,
+        zippedArchive: true,
+        handleExceptions: true,
     }),
     console: new transports.Console({
         level: "info",
@@ -35,12 +49,16 @@ const opts = {
 }
 
 const logger = createLogger({
-    transports: [opts.file]
+    transports: [opts.fileInfo, opts.fileError]
 });
 
 if (process.env.NODE_ENV !== "production") {
-    console.log(process.env.NODE_ENV);
+    // only dev
     logger.add(opts.console);
+}
+
+logger.stream = {
+    write: (message) => logger.info(message.slice(0, -1)),
 }
 
 module.exports = logger;
