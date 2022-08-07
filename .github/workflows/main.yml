@@ -1,0 +1,21 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  buld:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@v3
+      
+      - name: React Build.
+        run: cd client
+        run: yarn build
+        run: cd ..
+
+
