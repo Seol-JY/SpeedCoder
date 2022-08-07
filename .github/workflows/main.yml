@@ -14,8 +14,9 @@ jobs:
         uses: actions/checkout@v3
       
       - name: React Build.
-        run: cd client
-        run: yarn build
-        run: cd ..
+        run: |
+          cd client
+          yarn build
+          cd ..
 
 
