@@ -4,9 +4,12 @@ on:
   push:
     branches: [main]
 
+env:
+  DOCKER_IMAGE: wlsdud5654/speed-coder
+  NAME: coder
 
 jobs:
-  buld:
+  build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -18,5 +21,40 @@ jobs:
           cd client
           yarn build
           cd ..
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v2 # build-push-action 사용
+        with:
+          context: .
+          push: true
+          tags: ${{ env.DOCKER_IMAGE }}:latest
+          cache-from: type=gha # 여기서 gha 는 Guthub Actions 용 캐시를 의미합니다.
+          cache-to: type=gha,mode=max
+  
+  deploy:
+    needs: build  # build 후에 실행되도록 정의
+    name: Deploy
+    runs-on: [ self-hosted, label-go ]
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # 3000 -> 80 포트로 수행하도록 지정
+      - name: Docker run
+        run: |
+          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
+          docker run -e ATLAS_URL=${{ secrets.ATLAS_URL }} -d -p -name ${{ env.NAME }} 80:80 --restart alway ${{ env.DOCKER_IMAGE }}:latest
+          
 
 
