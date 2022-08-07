@@ -53,7 +53,7 @@ jobs:
       - name: Docker run
         run: |
           docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
-          docker run -e ATLAS_URL="${{ secrets.ATLAS_URL }}" -d -p 80:80 --name ${{ env.NAME }} --restart always ${{ env.DOCKER_IMAGE }}:latest
+          docker run -e ATLAS_URL="${{ secrets.ATLAS_URL }}" -d -p 80:80 --name ${{ env.NAME }} ${{ env.DOCKER_IMAGE }}:latest
           
 
 
