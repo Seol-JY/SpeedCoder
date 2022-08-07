@@ -2,7 +2,7 @@
 const app = require("../app");
 const dbo = require("../src/config/db")
 const logger = require("../src/config/logger")
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 80; 
 
 app.listen(PORT, () => {
     logger.info("Server Start... ");
