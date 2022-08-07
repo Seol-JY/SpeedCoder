@@ -52,7 +52,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Docker run
         run: |
-          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
+          docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
           docker run -e ATLAS_URL="${{ secrets.ATLAS_URL }}" -d -p -name ${{ env.NAME }} 80:80 --restart alway ${{ env.DOCKER_IMAGE }}:latest
           
 
