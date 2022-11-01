@@ -1,17 +1,31 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { setCorrectchr } from '../redux/correct/actions'
-import {setWrongchr} from '../redux/wrong/actions'
+import { setWrongchr } from '../redux/wrong/actions'
 import getFilecontents from '../utils/filecontents'
+import AutoCompletion from './AutoCompletion'
 
 function Text(props) {
   //const colormap = file.colormap
   const [textSplit, setTextSplit] = useState([]);
+  const [autoWord, setAutoWord] = useState([]);
   const [themeColor, setThemeColor] = useState("");
   let wrong = 0,
     correct = 0;
   const user = props.userInput;
   const userSplit = user.split("");
+
+  useEffect(() => { // 자동완성 판정 부분
+    const regex = /[a-z|A-Z]/;
+    let autoStop = user.length-1;
+    let starr=[];
+    while(regex.test(userSplit[autoStop]) && autoStop>-1) {
+      starr.unshift(userSplit[autoStop]);
+      autoStop--;
+    }
+    console.log(starr);
+    setAutoWord(starr);
+  }, [props.userInput])
 
   useEffect(() => {
     setTextSplit(getFilecontents(props.file).content);
@@ -33,7 +47,7 @@ function Text(props) {
     props.setWrongchr(wrong);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
-
+  
   return (
     <div className="textdisplay">
       {textSplit.map((s, i) => {
@@ -57,18 +71,26 @@ function Text(props) {
             colortxt = "white";
             wrong++;
           }
+
         }
 
-        const chr =
-          i === user.length - 1
-            ? userSplit[i] === "\n" || s === "\n"
-              ? s
-              : userSplit[i]
-            : s;
-
+        let chr;  // 출력할 character(조건에 맞게)
+        if( i<= user.length -1) {
+          if(wrongLineBreak) {
+            chr = s
+          } else if(userSplit[i] === "\n" && s!=="\n") {
+            chr = "↵"
+          } else {
+            chr = userSplit[i]
+          }
+        } else {
+          chr = s
+        }
+        
         return (
           <pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>
-            {user.length === i ? <div className="cursor">_</div> : ""}
+            {user.length === i ? <div className="cursor">│</div>  : ""}
+            {user.length === i && autoWord.length? <AutoCompletion autoWord={autoWord}/>  : ""}
             {wrongLineBreak ? <div className="wrong-line-break"></div> : ""}
             {chr}
           </pre>
