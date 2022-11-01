@@ -8,24 +8,11 @@ import AutoCompletion from './AutoCompletion'
 function Text(props) {
   //const colormap = file.colormap
   const [textSplit, setTextSplit] = useState([]);
-  const [autoWord, setAutoWord] = useState([]);
   const [themeColor, setThemeColor] = useState("");
   let wrong = 0,
     correct = 0;
   const user = props.userInput;
   const userSplit = user.split("");
-
-  useEffect(() => { // 자동완성 판정 부분
-    const regex = /[a-z|A-Z]/;
-    let autoStop = user.length-1;
-    let starr=[];
-    while(regex.test(userSplit[autoStop]) && autoStop>-1) {
-      starr.unshift(userSplit[autoStop]);
-      autoStop--;
-    }
-    console.log(starr);
-    setAutoWord(starr);
-  }, [props.userInput])
 
   useEffect(() => {
     setTextSplit(getFilecontents(props.file).content);
@@ -90,7 +77,7 @@ function Text(props) {
         return (
           <pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>
             {user.length === i ? <div className="cursor">│</div>  : ""}
-            {user.length === i && autoWord.length? <AutoCompletion autoWord={autoWord}/>  : ""}
+            {user.length === i && props.useAutoComplete ? <AutoCompletion autoWord={props.autoWord}/>  : ""}
             {wrongLineBreak ? <div className="wrong-line-break"></div> : ""}
             {chr}
           </pre>

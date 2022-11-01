@@ -3,31 +3,56 @@ import { useEffect, useState } from 'react'
 
 export default function Editor({file, fileLength, setFileLength, section, daynight, finishTrigger}) {
 
-  const [userInput, setuserInput] = useState("");
+  const [userInput, setUserInput] = useState("");
   const [fileForCompare, setFileForCompare] = useState();
   const [sectionForCompare, setSectionForCompare] = useState();
+  const [useAutoComplete, setUseAutoComplete] = useState(true);
+  const [autoWord, setAutoWord] = useState([]);
+
+  useEffect(() => { // 자동완성 판정 부분
+    const regex = /[a-z|A-Z]/;
+    let autoStop = userInput.length-1;
+    let starr=[];
+    while(regex.test(userInput[autoStop]) && autoStop>-1) {
+      starr.unshift(userInput[autoStop]);
+      autoStop--;
+    }
+    console.log(starr);
+    setAutoWord(starr);
+    if (starr.length===0) {setUseAutoComplete(false)}
+  }, [userInput])
 
   const userInputTabHandler = (event) => {
     //tab을 공백4칸으로
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setuserInput(userInput + "    ");
+    if (event.key === "Escape") {
+      setUseAutoComplete(false);
     }
-    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+    else if (event.key === "Tab") {
       event.preventDefault();
+      setUserInput(userInput + "    ");
+      setUseAutoComplete(true);
+    }
+    else if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "ArrowUp" || event.key ==="ArrowDown") {
+      event.preventDefault();
+      if(useAutoComplete) {
+
+      }
+    }
+    else {
+      setUseAutoComplete(true)
     }
   };
 
   const userInputHandler = (event) => {
     //input창 내용을 userinput에 반영
-    setuserInput(event.currentTarget.value); // replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+    setUserInput(event.currentTarget.value); // replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
   };
   
   useEffect(() => {
     if (fileForCompare !== file) {
       // 파일 변경 시 내용 초기화
       setFileForCompare(file);
-      setuserInput("");
+      setUserInput("");
     }
     // eslint-disable-next-line
   }, [file]);
@@ -36,7 +61,7 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
     if (sectionForCompare !== section) {
       // Section 변경 시 내용 초기화
       setSectionForCompare(section);
-      setuserInput("");
+      setUserInput("");
     }
     // eslint-disable-next-line
   }, [section]);
@@ -44,7 +69,7 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
   useEffect(() => {
     // finishTrigger 변경 시 trigger가 -1이면 내용 초기화
     if (finishTrigger === -1) {
-      setuserInput("");
+      setUserInput("");
     }
   }, [finishTrigger]);
 
@@ -56,7 +81,7 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
     <div className="editor" onClick={focus}>
       <div className="numbering">1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26</div>
       <textarea  className="textbox" maxLength={fileLength} value={userInput} onKeyDown={userInputTabHandler} onChange={userInputHandler}></textarea>
-      <Text userInput={userInput} file = {file} setFileLength = {setFileLength} daynight={daynight} />
+      <Text autoWord={autoWord} useAutoComplete={useAutoComplete} userInput={userInput} setUserInput = {setUserInput} file = {file} setFileLength = {setFileLength} daynight={daynight} />
     </div>
   :<div className="editor" style={{fontSize:"60px", color:"gray"}}><br/><br/><br/>You did your Best!<br/><br/>Press Explorer to play.</div>)
 }

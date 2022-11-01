@@ -1,18 +1,32 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-export default function AutoCompletion({ atuoWord }) {
-
+export default function AutoCompletion({ autoWord }) {
+  const [comp, setComp] = useState([]);
+  const pyKeword  = [
+    "def",
+    "list",
+    "for",
+    "while",
+    "True",
+    "False",
+    "return",
+  ];
+arguments
+  useEffect(() => {
+    setComp(pyKeword.filter((option) => {
+        return option.includes(autoWord.join(''));
+    }))
+  }, [autoWord])
+  
   return  (
-    <div className="auto-complete">
+    comp.length !== 0 ? <div className="auto-complete">
         <ul>
-            <li>ddddd</li>
-            <li>ddddd</li>
-            {/* {
-              filename.map((s, i) => {
-                return <li key={i} className={"sidebarsection-list"+(filestate===s?'active':'')} onClick={()=>{props.setFile(s); setFilestate(s)}}><IconGenerator file={s} height={"13px"} />{s}</li>
+            {
+              comp.map((s, i) => {
+                return <li key={i} className={"auto-complete-list"+(i==0?'active':'')} onClick={()=>{}}>{s}</li>
               })
-            } */}
+            }
         </ul>
-    </div>
+    </div> : ""
   );
 }
