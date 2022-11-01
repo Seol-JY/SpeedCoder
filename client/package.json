@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-draggable": "4.4.5",
