@@ -1,5 +1,5 @@
 import "redux";
-import { combineReducers, createStore } from "redux";
+import { combineReducers, legacy_createSotre as createStore } from "redux";
 import setCorrectchrReducer from "./correct/reducer";
 import setWrongchrReducer from "./wrong/reducer";
 
