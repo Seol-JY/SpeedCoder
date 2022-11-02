@@ -15,12 +15,13 @@ server/.yarn/*
 client/node_modules/*
 
 client/.yarn/*
-!client/.yarn/cache
+!client/.yarn/cache 
 !client/.yarn/patches
 !client/.yarn/plugins
 !client/.yarn/releases
 !client/.yarn/sdks
 !client/.yarn/versions
+!server/.yarn/unplugged
 
 # testing
 /coverage
