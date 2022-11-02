@@ -3,47 +3,15 @@
 
 ![1](https://i.imgur.com/l87DvjT.gif)  
 
-[데모버전 사용해보기](https://zingy-pastelito-4942b8.netlify.app/)
-## 구조
-```
-FastCoder
-├── README.md
-├── package-lock.json
-├── package.json
-├── public
-│   └── index.html
-└── src
-    ├── App.css
-    ├── App.js
-    ├── components
-    │   ├── Debug.js
-    │   ├── Editor.js
-    │   ├── Popup.js
-    │   ├── PopupInner.js
-    │   ├── Sidebar.js
-    │   ├── SidebarButton.js
-    │   ├── Text.js
-    │   └── Topbar.js
-    ├── filecontents.js
-    ├── index.js
-    └── redux
-        ├── correct
-        │   ├── actions.js
-        │   ├── reducer.js
-        │   └── types.js
-        ├── store.js
-        └── wrong
-            ├── actions.js
-            ├── reducer.js
-            └── types.js
-```
+[데모버전 사용해보기](http://144.24.64.251/)
 
 
 ## 업데이트
-- 코드 리펙토링
-- 창 이동
-- 다크모드 개선
-- 결과창 구현 완료
+- 자동완성 도입
+## 브랜치 전략
+- main 브랜치는 항상 배포 및 사용 가능한 상태 유지
+- develop 브랜치에서 개발 및 테스트 완료 후 main으로 merge 할 것
+- main으로  merge 시 자동으로 배포 진행(무중단 x)
 
 ## 기술 스택
-**React.js, React-Redux**
+**React.js, React-Redux, Epress.js, OracleCloud, Yarn Berry(with zero-installs), Docker, CI/CD**
