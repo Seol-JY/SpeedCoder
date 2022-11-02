@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export default function AutoCompletion({ autoEnter, setAutoEnter, useAutoComplete, setUseAutoComplete, autoIndex, autoWord, userInput, setUserInput }) {
+export default function AutoCompletion({ autoEnter, setAutoEnter, useAutoComplete, setUseAutoComplete, keyEvent, setKeyEvent, autoWord, userInput, setUserInput }) {
   const [comp, setComp] = useState([]);
+  const [autoIndex, setAutoIndex] = useState(0);
   const pyKeword  = [
     "def",
     "list",
@@ -15,8 +16,36 @@ export default function AutoCompletion({ autoEnter, setAutoEnter, useAutoComplet
     "tes",
     "ttty",
     "yyyy",
-    "solution"
+    "solution",
+    "public",
+    "class",
+    "System.out.println()",
+    "static",
+    "void",
   ];
+
+  useEffect(() => {
+    switch (keyEvent) {
+      case "ArrowUp":
+        if (autoIndex==0) {
+          setAutoIndex(comp.length-1);
+        } else {
+          setAutoIndex(autoIndex-1);
+        }
+        setKeyEvent("")
+        break;
+      case "ArrowDown":
+        if (autoIndex==comp.length-1 ) {
+          setAutoIndex(0);
+        } else {
+          setAutoIndex(autoIndex+1);
+        }
+        setKeyEvent("")
+      case "":
+        setKeyEvent("")
+    }
+  }, [keyEvent])
+
   useEffect(() => {
     if (autoWord.length!==0) {
       setComp(pyKeword.filter((option) => {
@@ -32,7 +61,8 @@ export default function AutoCompletion({ autoEnter, setAutoEnter, useAutoComplet
       setUseAutoComplete(false);
     } else {
       setUseAutoComplete(true);
-    } 
+    }
+    setAutoIndex(0);
   }, [comp])
 
   useEffect(()=>{
