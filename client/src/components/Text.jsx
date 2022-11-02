@@ -77,7 +77,7 @@ function Text(props) {
         return (
           <pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>
             {user.length === i ? <div className="cursor">│</div>  : ""}
-            {user.length === i && props.useAutoComplete ? <AutoCompletion autoWord={props.autoWord}/>  : ""}
+            {user.length === i ? <AutoCompletion autoEnter={props.autoEnter} setAutoEnter={props.setAutoEnter} useAutoComplete={props.useAutoComplete} setUseAutoComplete={props.setUseAutoComplete} autoIndex={props.autoIndex} autoWord={props.autoWord} userInput={props.userInput} setUserInput={props.setUserInput}/>  : ""}
             {wrongLineBreak ? <div className="wrong-line-break"></div> : ""}
             {chr}
           </pre>

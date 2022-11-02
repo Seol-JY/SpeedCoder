@@ -186,7 +186,6 @@ body {
   color: var(--popup-inner-contents-font-color);
   overflow-y: overlay;
   overflow-x: hidden;
-  transition: all 0.3s;
 }
 
 .auto-complete::-webkit-scrollbar {
@@ -210,8 +209,6 @@ body {
   color: var(--section-header-color);
   font-size: 13px;
   background-color: var(--sidebar-background-color);
-  transition: color 0.3s;
-  transition: background-color 0.3s;
 }
 
 .auto-complete-listactive {
@@ -227,8 +224,6 @@ body {
   color: white;
   font-size: 13px;
   background-color: var(--cursor-color);
-  transition: color 0.3s;
-  transition: background-color 0.3s;
 }
 
 
