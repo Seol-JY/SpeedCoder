@@ -1,8 +1,14 @@
-import Text from "./Text"
-import { useEffect, useState } from 'react'
+import Text from "./Text";
+import { useEffect, useState } from "react";
 
-export default function Editor({file, fileLength, setFileLength, section, daynight, finishTrigger}) {
-
+export default function Editor({
+  file,
+  fileLength,
+  setFileLength,
+  section,
+  daynight,
+  finishTrigger,
+}) {
   const [userInput, setUserInput] = useState("");
   const [fileForCompare, setFileForCompare] = useState();
   const [sectionForCompare, setSectionForCompare] = useState();
@@ -11,35 +17,44 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
   const [keyEvent, setKeyEvent] = useState("");
   const [autoEnter, setAutoEnter] = useState(false);
 
-  useEffect(() => { // 자동완성 판정 부분
+  useEffect(() => {
+    // 자동완성 판정 부분
     const regex = /[a-z|A-Z]/;
-    let autoStop = userInput.length-1;
-    let starr=[];
-    while(regex.test(userInput[autoStop]) && autoStop>-1) {
+    let autoStop = userInput.length - 1;
+    let starr = [];
+    while (regex.test(userInput[autoStop]) && autoStop > -1) {
       starr.unshift(userInput[autoStop]);
       autoStop--;
     }
     setAutoWord(starr);
-    if (starr.length===0) {setUseAutoComplete(false)}
-  }, [userInput])
+    if (starr.length === 0) {
+      setUseAutoComplete(false);
+    }
+  }, [userInput]);
 
-  const userInputTabHandler = (event) => { // todo: 조건식 최적화
+  const userInputTabHandler = (event) => {
+    // todo: 조건식 최적화
     //tab을 공백4칸으로
     if (event.key === "Escape") {
       setUseAutoComplete(false);
-    }
-    else if ((event.key === "Enter" || event.key === "Tab" )&& useAutoComplete) {
+    } else if (
+      (event.key === "Enter" || event.key === "Tab") &&
+      useAutoComplete
+    ) {
       event.preventDefault();
       setAutoEnter(true);
       setUseAutoComplete(false);
-    }
-    else if (event.key === "Tab") {
+    } else if (event.key === "Tab") {
       event.preventDefault();
       setUserInput(userInput + "    ");
-    }
-    else if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "ArrowUp" || event.key ==="ArrowDown") {
-      event.preventDefault();  //todo: 인덱스 범위 out 처리 해야함
-      if(useAutoComplete) {
+    } else if (
+      event.key === "ArrowLeft" ||
+      event.key === "ArrowRight" ||
+      event.key === "ArrowUp" ||
+      event.key === "ArrowDown"
+    ) {
+      event.preventDefault(); //TODO: 인덱스 범위 out 처리 해야함
+      if (useAutoComplete) {
         if (event.key === "ArrowUp") {
           setKeyEvent("ArrowUp");
         } else if (event.key === "ArrowDown") {
@@ -48,9 +63,8 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
       } else {
         setKeyEvent("");
       }
-    }
-    else {
-      setUseAutoComplete(true)
+    } else {
+      setUseAutoComplete(true);
       setKeyEvent("");
     }
   };
@@ -59,7 +73,7 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
     //input창 내용을 userinput에 반영
     setUserInput(event.currentTarget.value); // replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
   };
-  
+
   useEffect(() => {
     if (fileForCompare !== file) {
       // 파일 변경 시 내용 초기화
@@ -89,12 +103,73 @@ export default function Editor({file, fileLength, setFileLength, section, daynig
     //textbox로 focus이동
     document.querySelector(".textbox").focus();
   };
-  return ((file!=="Ranking")?
+  return file !== "Ranking" ? (
     <div className="editor" onClick={focus}>
-      <div className="numbering">1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26</div>
-      <textarea  className="textbox" maxLength={fileLength} value={userInput} onKeyDown={userInputTabHandler} onChange={userInputHandler}></textarea>
-      <Text autoEnter={autoEnter} setAutoEnter={setAutoEnter} setUseAutoComplete={setUseAutoComplete} keyEvent={keyEvent} setKeyEvent={setKeyEvent} autoWord={autoWord} useAutoComplete={useAutoComplete} userInput={userInput} setUserInput = {setUserInput} file = {file} setFileLength = {setFileLength} daynight={daynight} />
+      <div className="numbering">
+        1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />
+        10
+        <br />
+        11
+        <br />
+        12
+        <br />
+        13
+        <br />
+        14
+        <br />
+        15
+        <br />
+        16
+        <br />
+        17
+        <br />
+        18
+        <br />
+        19
+        <br />
+        20
+        <br />
+        21
+        <br />
+        22
+        <br />
+        23
+        <br />
+        24
+        <br />
+        25
+        <br />
+        26
+      </div>
+      <textarea
+        className="textbox"
+        maxLength={fileLength}
+        value={userInput}
+        onKeyDown={userInputTabHandler}
+        onChange={userInputHandler}
+      ></textarea>
+      <Text
+        autoEnter={autoEnter}
+        setAutoEnter={setAutoEnter}
+        setUseAutoComplete={setUseAutoComplete}
+        keyEvent={keyEvent}
+        setKeyEvent={setKeyEvent}
+        autoWord={autoWord}
+        useAutoComplete={useAutoComplete}
+        userInput={userInput}
+        setUserInput={setUserInput}
+        file={file}
+        setFileLength={setFileLength}
+        daynight={daynight}
+      />
     </div>
-  :<div className="editor" style={{fontSize:"60px", color:"gray"}}><br/><br/><br/>You did your Best!<br/><br/>Press Explorer to play.</div>)
+  ) : (
+    <div className="editor" style={{ fontSize: "60px", color: "gray" }}>
+      <br />
+      <br />
+      <br />
+      <br />
+      Press Explorer to play.
+    </div>
+  );
 }
-  
