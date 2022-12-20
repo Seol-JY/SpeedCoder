@@ -197,7 +197,6 @@ export default function AutoCompletion({
   useEffect(() => {
     if (autoWord.length !== 0) {
       const extension = file.split(".");
-      console.log(autoWord);
       setComp(
         supportLangList[extension[extension.length - 1]].filter((keyword) => {
           return autoWord.join("") == keyword.substring(0, autoWord.length);
