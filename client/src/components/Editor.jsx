@@ -26,6 +26,7 @@ export default function Editor({
       starr.unshift(userInput[autoStop]);
       autoStop--;
     }
+    console.log(starr);
     setAutoWord(starr);
     if (starr.length === 0) {
       setUseAutoComplete(false);
@@ -35,6 +36,7 @@ export default function Editor({
   const userInputTabHandler = (event) => {
     // todo: 조건식 최적화
     //tab을 공백4칸으로
+    console.log(event.key);
     if (event.key === "Escape") {
       setUseAutoComplete(false);
     } else if (
@@ -53,7 +55,7 @@ export default function Editor({
       event.key === "ArrowUp" ||
       event.key === "ArrowDown"
     ) {
-      event.preventDefault(); //TODO: 인덱스 범위 out 처리 해야함
+      event.preventDefault();
       if (useAutoComplete) {
         if (event.key === "ArrowUp") {
           setKeyEvent("ArrowUp");
@@ -64,7 +66,7 @@ export default function Editor({
         setKeyEvent("");
       }
     } else {
-      setUseAutoComplete(true);
+      //setUseAutoComplete(true);
       setKeyEvent("");
     }
   };
