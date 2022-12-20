@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { setCorrectchr } from '../redux/correct/actions'
-import { setWrongchr } from '../redux/wrong/actions'
-import getFilecontents from '../utils/filecontents'
-import AutoCompletion from './AutoCompletion'
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { setCorrectchr } from "../redux/correct/actions";
+import { setWrongchr } from "../redux/wrong/actions";
+import getFilecontents from "../utils/filecontents";
+import AutoCompletion from "./AutoCompletion";
 
 function Text(props) {
   //const colormap = file.colormap
@@ -34,11 +34,10 @@ function Text(props) {
     props.setWrongchr(wrong);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
-  
+
   return (
     <div className="textdisplay">
       {textSplit.map((s, i) => {
-        
         let color;
         let colortxt;
         let wrongLineBreak;
@@ -58,26 +57,47 @@ function Text(props) {
             colortxt = "white";
             wrong++;
           }
-
         }
 
-        let chr;  // 출력할 character(조건에 맞게)
-        if( i<= user.length -1) {
-          if(wrongLineBreak) {
-            chr = s
-          } else if(userSplit[i] === "\n" && s!=="\n") {
-            chr = "↵"
+        let chr; // 출력할 character(조건에 맞게)
+        if (i <= user.length - 1) {
+          if (wrongLineBreak) {
+            chr = s;
+          } else if (userSplit[i] === "\n" && s !== "\n") {
+            chr = "↵";
           } else {
-            chr = userSplit[i]
+            chr = userSplit[i];
           }
         } else {
-          chr = s
+          chr = s;
         }
-        
+
         return (
-          <pre key={i} style={{display: "inline", backgroundColor: color, color: colortxt}}>
-            {user.length === i ? <div className="cursor">│</div>  : ""}
-            {user.length === i ? <AutoCompletion autoEnter={props.autoEnter} setAutoEnter={props.setAutoEnter} useAutoComplete={props.useAutoComplete} setUseAutoComplete={props.setUseAutoComplete} keyEvent={props.keyEvent} setKeyEvent={props.setKeyEvent} autoWord={props.autoWord} userInput={props.userInput} setUserInput={props.setUserInput}/>  : ""}
+          <pre
+            key={i}
+            style={{
+              display: "inline",
+              backgroundColor: color,
+              color: colortxt,
+            }}
+          >
+            {user.length === i ? <div className="cursor">│</div> : ""}
+            {user.length === i ? (
+              <AutoCompletion
+                file={props.file}
+                autoEnter={props.autoEnter}
+                setAutoEnter={props.setAutoEnter}
+                useAutoComplete={props.useAutoComplete}
+                setUseAutoComplete={props.setUseAutoComplete}
+                keyEvent={props.keyEvent}
+                setKeyEvent={props.setKeyEvent}
+                autoWord={props.autoWord}
+                userInput={props.userInput}
+                setUserInput={props.setUserInput}
+              />
+            ) : (
+              ""
+            )}
             {wrongLineBreak ? <div className="wrong-line-break"></div> : ""}
             {chr}
           </pre>
@@ -88,17 +108,17 @@ function Text(props) {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        Correctchr: state.correct.Correctchr,
-        Wrongchr: state.wrong.Wrongchr,
-    }
-}
+  return {
+    Correctchr: state.correct.Correctchr,
+    Wrongchr: state.wrong.Wrongchr,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        setCorrectchr: (cor)=>dispatch(setCorrectchr(cor)),
-        setWrongchr: (wr)=>dispatch(setWrongchr(wr))
-    }
-}
+  return {
+    setCorrectchr: (cor) => dispatch(setCorrectchr(cor)),
+    setWrongchr: (wr) => dispatch(setWrongchr(wr)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Text)
+export default connect(mapStateToProps, mapDispatchToProps)(Text);
