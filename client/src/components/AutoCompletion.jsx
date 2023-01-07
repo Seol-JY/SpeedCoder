@@ -200,7 +200,6 @@ export default function AutoCompletion({
       setComp(
         supportLangList[extension[extension.length - 1]].filter((keyword) => {
           return autoWord.join("") == keyword.substring(0, autoWord.length);
-          //return keyword.includes(autoWord.join(""));
         })
       );
     } else {
