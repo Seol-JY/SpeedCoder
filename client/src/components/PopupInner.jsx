@@ -31,10 +31,21 @@ export default function PopupInner({ file, finishTrigger, setFinishTrigger }) {
   return (
     <Draggable onDrag={(e, data) => trackPos(data)}>
       <div className={`popup-inner ${animation} `}>
-        <ul className="circlewrapper" onClick={() => {setFinishTrigger(-1);}}>
-          <li className="circle"><div></div></li>
-          <li className="circle"><div></div></li>
-          <li className="circle"><div></div></li>
+        <ul
+          className="circlewrapper"
+          onClick={() => {
+            setFinishTrigger(-1);
+          }}
+        >
+          <li className="circle">
+            <div></div>
+          </li>
+          <li className="circle">
+            <div></div>
+          </li>
+          <li className="circle">
+            <div></div>
+          </li>
         </ul>
 
         <div className="popup-inner-contents">
@@ -43,7 +54,11 @@ export default function PopupInner({ file, finishTrigger, setFinishTrigger }) {
             <p>/cpm</p>
           </div>
           {calcNow < 0.2 && (
-            <PopupInnerInput file={file} finishTrigger={finishTrigger} setFinishTrigger={setFinishTrigger} />
+            <PopupInnerInput
+              file={file}
+              finishTrigger={finishTrigger}
+              setFinishTrigger={setFinishTrigger}
+            />
           )}
         </div>
       </div>

@@ -1,8 +1,11 @@
-export default function LeaderBoard({ s}) {
+export default function LeaderBoard({ s }) {
   return (
     <div className="sidebarsection-rank-items">
       <ul>
-        <p><span>#</span>{s.rank}</p>
+        <p>
+          <span>#</span>
+          {s.rank}
+        </p>
         <p>CPM:{s.cpm}</p>
       </ul>
       <ul>

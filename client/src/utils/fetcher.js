@@ -1,4 +1,4 @@
-module.exports =  {
+module.exports = {
   save: (file, cpm, name, message, correctChr, wrongChr, callback) => {
     if (name.length && message.length) {
       const result = {
@@ -9,7 +9,7 @@ module.exports =  {
         correctChr: correctChr,
         wrongChr: wrongChr,
       };
-      
+
       fetch("/records", {
         method: "POST",
         headers: {
@@ -26,7 +26,7 @@ module.exports =  {
           }
         })
         .catch((err) => {
-          alert("서버 연결이 원활하지 않습니다.\n ["+err+"]");
+          callback(false);
         });
     }
   },

@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import useInterval from "../hooks/useInterval";
 import speed from "../utils/speed";
 
-function Debug({filestate, Correctchr, Wrongchr, fileLength, setFinishTrigger,}) {
+function Debug({
+  filestate,
+  Correctchr,
+  Wrongchr,
+  fileLength,
+  setFinishTrigger,
+}) {
   const [count, setCount] = useState(0);
   const [cpm, setCpm] = useState("0000");
   const [terval, setTerval] = useState(null);
@@ -24,7 +30,7 @@ function Debug({filestate, Correctchr, Wrongchr, fileLength, setFinishTrigger,})
     } else {
       setTerval(50);
       if (Correctchr + Wrongchr === fileLength) {
-        //완료조건
+        //완료 조건
         setFinishTrigger(parseInt(cpm)); //종료 트리거
         setTerval(null);
         setCount(0);

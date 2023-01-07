@@ -1,5 +1,6 @@
-// This file is deprecated
-
+/**
+ * @deprecated localStore should not be used
+ */
 // module.exports = {
 //   insertDummy: () => {
 //     let i;

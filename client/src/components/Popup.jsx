@@ -4,12 +4,11 @@ import PopupInner from "./PopupInner";
 export default function Popup({ file, finishTrigger, setFinishTrigger }) {
   const tempInput = useRef();
 
-
-  useEffect(()=>{
+  useEffect(() => {
     tempInput.current.focus();
-  },[])
+  }, []);
 
-  return  (
+  return (
     <div className="popup fade-in">
       <input type="text" className="textbox" ref={tempInput}></input>
       <PopupInner
