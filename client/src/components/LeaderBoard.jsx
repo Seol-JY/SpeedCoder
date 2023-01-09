@@ -9,7 +9,7 @@ export default function LeaderBoard() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(true); // 서버 에러
+  const [error, setError] = useState(false); // 서버 에러
 
   const getItems = useCallback(async () => {
     if (page <= 1) {
