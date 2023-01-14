@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout source code.
         uses: actions/checkout@v3
-      
+
       - name: React Build.
         run: |
           cd client
@@ -30,7 +30,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
       - name: Build and push
         uses: docker/build-push-action@v2 # build-push-action 사용
         with:
@@ -39,11 +39,11 @@ jobs:
           tags: ${{ env.DOCKER_IMAGE }}:latest
           cache-from: type=gha # 여기서 gha 는 Guthub Actions 용 캐시를 의미합니다.
           cache-to: type=gha,mode=max
-  
+
   deploy:
-    needs: build  # build 후에 실행되도록 정의
+    needs: build # build 후에 실행되도록 정의
     name: Deploy
-    runs-on: [ self-hosted, label-go ]
+    runs-on: [self-hosted, label-go]
     steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -54,6 +54,3 @@ jobs:
         run: |
           docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
           docker run -e ATLAS_URL="${{ secrets.ATLAS_URL }}" -d -p 80:80 --name ${{ env.NAME }} ${{ env.DOCKER_IMAGE }}:latest
-          
-
-
