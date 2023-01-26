@@ -3,7 +3,10 @@ const Record = require("../../model/Record");
 
 const output = {
   main: (req, res) => {
-    res.sendfile("../../views/index.html");
+    res.status(200).sendfile("../../views/index.html");
+  },
+  redir: (req, res) => {
+    res.redirect("/");
   },
 };
 
