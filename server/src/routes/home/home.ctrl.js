@@ -8,9 +8,6 @@ const output = {
 };
 
 const process = {
-  redir: (req, res) => {
-    res.redirect("/");
-  },
   addRecord: async (req, res) => {
     const record = new Record(req.body);
     const response = await record.insertRecord();
