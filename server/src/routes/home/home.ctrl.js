@@ -3,11 +3,14 @@ const Record = require("../../model/Record");
 
 const output = {
   main: (req, res) => {
-    res.sendfile("../../views/index.html");
+    res.status(200).sendfile("../../views/index.html");
   },
 };
 
 const process = {
+  redir: (req, res) => {
+    res.redirect("/");
+  },
   addRecord: async (req, res) => {
     const record = new Record(req.body);
     const response = await record.insertRecord();
