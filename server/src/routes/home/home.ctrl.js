@@ -5,12 +5,12 @@ const output = {
   main: (req, res) => {
     res.status(200).sendfile("../../views/index.html");
   },
-  redir: (req, res) => {
-    res.redirect("/");
-  },
 };
 
 const process = {
+  redir: (req, res) => {
+    res.redirect("/");
+  },
   addRecord: async (req, res) => {
     const record = new Record(req.body);
     const response = await record.insertRecord();
