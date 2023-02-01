@@ -17,9 +17,23 @@ function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [daynight, setdaynight] = useState(1);
   const [finishTrigger, setFinishTrigger] = useState(-1);
+  const [scale, setScale] = useState(
+    Math.min(window.innerWidth / 1400, window.innerHeight / 900)
+  );
 
   useEffect(() => {
     egg();
+  }, []);
+
+  const handleResize = () => {
+    setScale(Math.min(window.innerWidth / 1400, window.innerHeight / 900));
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const trackPos = (data) => {
@@ -32,58 +46,60 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Draggable onDrag={(e, data) => trackPos(data)}>
-        <div className="form no-drag">
-          <h1
-            onClick={() => {
-              setPosition({ x: 0, y: 0 });
-            }}
-          >
-            Speed Coder - Insiders
-          </h1>
+      <div className="scale-wrapper" style={{ transform: `scale(${scale})` }}>
+        <Draggable onDrag={(e, data) => trackPos(data)}>
+          <div className="form no-drag">
+            <h1
+              onClick={() => {
+                setPosition({ x: 0, y: 0 });
+              }}
+            >
+              Speed Coder - Insiders
+            </h1>
 
-          <ul className="circlewrapper" onClick={easteregg}>
-            <li className="circle">
-              <div></div>
-            </li>
-            <li className="circle">
-              <div></div>
-            </li>
-            <li className="circle">
-              <div></div>
-            </li>
-          </ul>
+            <ul className="circlewrapper" onClick={easteregg}>
+              <li className="circle">
+                <div></div>
+              </li>
+              <li className="circle">
+                <div></div>
+              </li>
+              <li className="circle">
+                <div></div>
+              </li>
+            </ul>
 
-          <SidebarButton
-            setSection={setSection}
-            daynight={daynight}
-            setdaynight={setdaynight}
-          />
-          <Sidebar
-            section={section}
-            file={file}
-            setFile={setFile}
-            fileLength={fileLength}
-            setFinishTrigger={setFinishTrigger}
-          />
+            <SidebarButton
+              setSection={setSection}
+              daynight={daynight}
+              setdaynight={setdaynight}
+            />
+            <Sidebar
+              section={section}
+              file={file}
+              setFile={setFile}
+              fileLength={fileLength}
+              setFinishTrigger={setFinishTrigger}
+            />
 
-          <ul>
-            <li>
-              <Topbar file={file} />
-            </li>
-            <li>
-              <Editor
-                file={file}
-                fileLength={fileLength}
-                setFileLength={setFileLength}
-                section={section}
-                daynight={daynight}
-                finishTrigger={finishTrigger}
-              />
-            </li>
-          </ul>
-        </div>
-      </Draggable>
+            <ul>
+              <li>
+                <Topbar file={file} />
+              </li>
+              <li>
+                <Editor
+                  file={file}
+                  fileLength={fileLength}
+                  setFileLength={setFileLength}
+                  section={section}
+                  daynight={daynight}
+                  finishTrigger={finishTrigger}
+                />
+              </li>
+            </ul>
+          </div>
+        </Draggable>
+      </div>
       {finishTrigger !== -1 ? (
         <Popup
           file={file}

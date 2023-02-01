@@ -240,10 +240,13 @@ body {
   background-color: var(--popup-background-color);
 }
 
-.popup-inner {
+.scale-popup-inner {
   position: absolute;
   left: calc(100vw / 2 - 324px);
   top: calc(100vh / 2 - 244px);
+}
+
+.popup-inner {
   width: 648px;
   height: 489x;
   border-radius: 11px;
@@ -336,7 +339,11 @@ body {
 .popup-info-ul button:nth-child(2):hover {
   background-color: #0170eb;
 }
-
+.scale-wrapper {
+  position: absolute;
+  left: calc(100vw / 2 - 611px);
+  top: calc(100vh / 2 - 382px);
+}
 .form {
   width: 1222px;
   height: 764px;
@@ -344,9 +351,6 @@ body {
   /*transform: translate(-50%, -50%);*/
   background-color: var(--form-background-color);
   transition: background-color 0.3s;
-  position: absolute;
-  left: calc(100vw / 2 - 611px);
-  top: calc(100vh / 2 - 382px);
   display: flex;
   align-items: center;
   justify-content: center;
