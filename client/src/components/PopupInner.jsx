@@ -10,6 +10,9 @@ export default function PopupInner({ file, finishTrigger, setFinishTrigger }) {
   const [animation, setAnimation] = useState("slide-in-blurred-bl");
   const [displayCpm, setDisplayCpm] = useState(0);
   const [calcNow, setCalcNow] = useState(finishTrigger);
+  const [scale, setScale] = useState(
+    Math.min(window.innerWidth / 1400, window.innerHeight / 900)
+  );
   const trackPos = (data) => {
     setPosition({ x: data.x, y: data.y });
   };
@@ -18,6 +21,17 @@ export default function PopupInner({ file, finishTrigger, setFinishTrigger }) {
     setTimeout(() => {
       setAnimation("");
     }, 380);
+  }, []);
+
+  const handleResize = () => {
+    setScale(Math.min(window.innerWidth / 1400, window.innerHeight / 900));
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useInterval(
@@ -29,39 +43,41 @@ export default function PopupInner({ file, finishTrigger, setFinishTrigger }) {
   );
 
   return (
-    <Draggable onDrag={(e, data) => trackPos(data)}>
-      <div className={`popup-inner ${animation} `}>
-        <ul
-          className="circlewrapper"
-          onClick={() => {
-            setFinishTrigger(-1);
-          }}
-        >
-          <li className="circle">
-            <div></div>
-          </li>
-          <li className="circle">
-            <div></div>
-          </li>
-          <li className="circle">
-            <div></div>
-          </li>
-        </ul>
+    <div className="scale-popup-inner" style={{ transform: `scale(${scale})` }}>
+      <Draggable onDrag={(e, data) => trackPos(data)}>
+        <div className={`popup-inner ${animation} `}>
+          <ul
+            className="circlewrapper"
+            onClick={() => {
+              setFinishTrigger(-1);
+            }}
+          >
+            <li className="circle">
+              <div></div>
+            </li>
+            <li className="circle">
+              <div></div>
+            </li>
+            <li className="circle">
+              <div></div>
+            </li>
+          </ul>
 
-        <div className="popup-inner-contents">
-          <div className="popup-inner-contents-info">
-            <p>{String(displayCpm).padStart(4, "0")}</p>
-            <p>/cpm</p>
+          <div className="popup-inner-contents">
+            <div className="popup-inner-contents-info">
+              <p>{String(displayCpm).padStart(4, "0")}</p>
+              <p>/cpm</p>
+            </div>
+            {calcNow < 0.2 && (
+              <PopupInnerInput
+                file={file}
+                finishTrigger={finishTrigger}
+                setFinishTrigger={setFinishTrigger}
+              />
+            )}
           </div>
-          {calcNow < 0.2 && (
-            <PopupInnerInput
-              file={file}
-              finishTrigger={finishTrigger}
-              setFinishTrigger={setFinishTrigger}
-            />
-          )}
         </div>
-      </div>
-    </Draggable>
+      </Draggable>
+    </div>
   );
 }
