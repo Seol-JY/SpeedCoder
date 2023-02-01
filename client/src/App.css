@@ -55,8 +55,9 @@
 }
 
 @font-face {
-  font-family: 'D2Coding';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-family: "D2Coding";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -118,8 +119,9 @@
 }
 
 .slide-in-blurred-bl {
-  -webkit-animation: slide-in-blurred-bl 0.4s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-  animation: slide-in-blurred-bl 0.4s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+  -webkit-animation: slide-in-blurred-bl 0.4s cubic-bezier(0.23, 1, 0.32, 1)
+    both;
+  animation: slide-in-blurred-bl 0.4s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 /* ----------------------------------------------
@@ -131,27 +133,27 @@
 
 @-webkit-keyframes fade-in {
   0% {
-    opacity: 0
+    opacity: 0;
   }
 
   100% {
-    opacity: 1
+    opacity: 1;
   }
 }
 
 @keyframes fade-in {
   0% {
-    opacity: 0
+    opacity: 0;
   }
 
   100% {
-    opacity: 1
+    opacity: 1;
   }
 }
 
 .fade-in {
-  -webkit-animation: fade-in .4s cubic-bezier(.39, .575, .565, 1.000) both;
-  animation: fade-in .4s cubic-bezier(.39, .575, .565, 1.000) both
+  -webkit-animation: fade-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 @keyframes blink-effect {
@@ -161,7 +163,7 @@
 }
 
 html {
-  font-family: 'D2Coding';
+  font-family: "D2Coding";
 }
 
 body {
@@ -226,12 +228,11 @@ body {
   background-color: var(--cursor-color);
 }
 
-
 .auto-complete-list:hover {
   background-color: var(--section-hover-color);
   cursor: pointer;
-  transition: color 0.0s;
-} 
+  transition: color 0s;
+}
 
 .popup {
   width: 100vw;
@@ -241,8 +242,8 @@ body {
 
 .popup-inner {
   position: absolute;
-  left: calc(100vw/2 - 324px);
-  top: calc(100vh/2 - 244px);
+  left: calc(100vw / 2 - 324px);
+  top: calc(100vh / 2 - 244px);
   width: 648px;
   height: 489x;
   border-radius: 11px;
@@ -328,7 +329,7 @@ body {
 }
 
 .popup-info-ul button:nth-child(2) {
-  background-color: #3F85F7;
+  background-color: #3f85f7;
   color: white;
 }
 
@@ -344,8 +345,8 @@ body {
   background-color: var(--form-background-color);
   transition: background-color 0.3s;
   position: absolute;
-  left: calc(100vw/2 - 611px);
-  top: calc(100vh/2 - 382px);
+  left: calc(100vw / 2 - 611px);
+  top: calc(100vh / 2 - 382px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -385,7 +386,7 @@ body {
 }
 
 pre {
-  font-family: 'D2coding';
+  font-family: "D2coding";
   color: var(--off-editor-text-color);
   font-size: 20px;
   line-height: 25px;
@@ -412,7 +413,7 @@ ul {
 }
 
 .iconwrapper {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   cursor: pointer;
   width: 43px;
   height: 43px;
@@ -437,7 +438,7 @@ ul {
 }
 
 .iconwrapperactive {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   cursor: pointer;
   width: 43px;
   height: 43px;
@@ -481,7 +482,6 @@ ul {
 }
 
 .sidebarsection-explorer::-webkit-scrollbar-thumb {
-
   background-color: hsla(0, 0%, 42%, 0.169);
   border-radius: 100px;
 }
@@ -534,11 +534,10 @@ ul {
   transition: background-color 0.3s;
 }
 
-
 .sidebarsection-list:hover {
   background-color: var(--section-hover-color);
   cursor: pointer;
-  transition: color 0.0s;
+  transition: color 0s;
 }
 
 .sidebarsection-debug {
@@ -613,7 +612,6 @@ ul {
 }
 
 .sidebarsection-rank::-webkit-scrollbar-thumb {
-
   background-color: hsla(0, 0%, 42%, 0.169);
   border-radius: 100px;
 }
