@@ -1,6 +1,7 @@
 # ⌨️ Speed Coder
+**Typing test for Developer, 개발자를 위한 타자연습 사이트**  
 
-**Typing test for Developer, 개발자를 위한 타자연습 사이트**
+[![CI/CD](https://github.com/Seol-JY/SpeedCoder/actions/workflows/main.yml/badge.svg)](https://github.com/Seol-JY/SpeedCoder/actions/workflows/main.yml)  <img src="https://img.shields.io/github/actions/workflow/status/Seol-JY/SpeedCoder/main.yml"> <img src="https://img.shields.io/youtube/views/ESrgpNHbPMg?style=flat">
 
 ![실행예제](https://user-images.githubusercontent.com/70826982/212483409-55ea62a0-e529-4b03-bcd4-192192758b9f.gif)
 
