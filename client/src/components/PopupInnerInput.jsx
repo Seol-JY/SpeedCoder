@@ -12,12 +12,16 @@ function PopupInnerInput({
   const nameInput = useRef();
   const messageInput = useRef();
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     nameInput.current.focus();
   }, []);
 
   const sendResult = () => {
+    if (loading) return;
+    setLoading(true);
+
     fetcher.save(
       file,
       finishTrigger,
@@ -26,6 +30,8 @@ function PopupInnerInput({
       Correctchr,
       Wrongchr,
       (bool) => {
+        setLoading(false);
+
         if (bool) setFinishTrigger(-1);
         else {
           console.log("error");
