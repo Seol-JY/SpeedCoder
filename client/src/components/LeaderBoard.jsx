@@ -50,7 +50,10 @@ export default function LeaderBoard() {
 
   return error ? (
     <ul className="sidebarsection-rank">
-      <li className="sidebarsection-rank-items">
+      <li
+        className="sidebarsection-rank-items"
+        style={{ fontSize: "14px", display: "flex", justifyContent: "center" }}
+      >
         서버 연결이 원활하지
         <br />
         않습니다. 인터넷 연결
@@ -80,6 +83,18 @@ export default function LeaderBoard() {
           </li>
         );
       })}
+      {loading && (
+        <li
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            objectFit: "cover",
+            height: "25px",
+          }}
+        >
+          <img alt="loading..." src={"img/loading.gif"} />
+        </li>
+      )}
     </ul>
   );
 }
