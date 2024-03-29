@@ -11,6 +11,10 @@ export default function LeaderBoard() {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false); // 서버 에러
 
+  /**
+   * 이전 방향 무한스크롤을 잠시 deprecated.
+   */
+
   const getItems = useCallback(async () => {
     if (page <= 1) {
       setPage(1); // page 0이하로 내려가는거 막음
@@ -20,7 +24,7 @@ export default function LeaderBoard() {
       .load(page)
       .then((data) => {
         setError(false);
-        setItems(data);
+        setItems([...items, ...data]);
         setLoading(false);
       })
       .catch((e) => {
@@ -32,11 +36,11 @@ export default function LeaderBoard() {
     getItems();
   }, [getItems]);
 
-  useEffect(() => {
-    if (prevInView && !loading) {
-      setPage((prevState) => prevState - 1);
-    }
-  }, [prevInView]);
+  // useEffect(() => {
+  //   if (prevInView && !loading) {
+  //     setPage((prevState) => prevState - 1);
+  //   }
+  // }, [prevInView]);
 
   useEffect(() => {
     if (nextInView && !loading) {
@@ -57,13 +61,13 @@ export default function LeaderBoard() {
   ) : (
     <ul className="sidebarsection-rank">
       {items.map((s, i) => {
-        if (i === 2) {
-          return (
-            <li key={s._id} ref={prev}>
-              <LeaderBoardContents s={s} />
-            </li>
-          );
-        } else if (i === items.length - 1) {
+        // if (i === 2) {
+        //   return (
+        //     <li key={s._id} ref={prev}>
+        //       <LeaderBoardContents s={s} />
+        //     </li>
+        //   );
+        if (i === items.length - 1) {
           return (
             <li key={s._id} ref={next}>
               <LeaderBoardContents s={s} />

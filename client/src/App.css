@@ -623,7 +623,8 @@ ul {
 .sidebarsection-rank-items {
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--sidebarbutton-background-color);
+  border: 0;
+  border-bottom: 1px solid var(--sidebarbutton-background-color);
   margin: 3px 0;
   padding: 4px 5px;
   height: 43px;
