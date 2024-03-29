@@ -20,11 +20,11 @@ class Record {
     }
   }
 
-  static async selectRecordByPage(page) {
+  static async selectRecordByPage(rawPage) {
     try {
       const ITEMS_PER_PAGE = 15; // 페이지당 아이템 수
 
-      const page = Number(page);
+      const page = Number(rawPage);
 
       const response = await RecordStorage.load(page);
       let rank = ITEMS_PER_PAGE * (page - 1) + 1;
