@@ -22,7 +22,8 @@ class RecordStorage {
     });
   }
 
-  static async load() {
+  static async load(page) {
+    const ITEMS_PER_PAGE = 15; // 페이지당 아이템 수
     return new Promise((resolve, reject) => {
       const db_connect = dbo.getDb();
 
@@ -30,6 +31,8 @@ class RecordStorage {
         .collection("leaderboard")
         .find({})
         .sort({ cpm: -1, wrongChr: 1, createAt: 1 })
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE)
         .toArray((err, res) => {
           if (err) reject(err);
           resolve(res);
