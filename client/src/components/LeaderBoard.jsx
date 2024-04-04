@@ -3,14 +3,13 @@ import { useState, useEffect, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
 import LeaderBoardContents from "./LeaderBoardContents";
 
-export default function LeaderBoard() {
+export default function LeaderBoard({ daynight }) {
   const [prev, prevInView] = useInView(); // 무한 스크롤용 ref - 이전
   const [next, nextInView] = useInView(); // 무한 스크롤용 ref - 이후
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false); // 서버 에러
-
   /**
    * 이전 방향 무한스크롤을 잠시 deprecated.
    */
@@ -92,6 +91,25 @@ export default function LeaderBoard() {
             height: "25px",
           }}
         >
+          <ul>
+            {[...Array(loading && items.length == 0 ? 14 : 3)].map(
+              (_, index) => (
+                <li key={index} className="sidebarsection-rank-items">
+                  <img
+                    src={
+                      daynight % 2
+                        ? "/img/skeleton-bright.png"
+                        : "/img/skeleton-dark.png"
+                    }
+                    style={{
+                      transition: "all 3s",
+                    }}
+                  />
+                </li>
+              )
+            )}
+          </ul>
+
           <img alt="loading..." src={"img/loading.gif"} />
         </li>
       )}

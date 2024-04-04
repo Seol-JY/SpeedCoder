@@ -63,7 +63,7 @@ export default function Sidebar(props) {
         <ul>
           <li className="sidebarsection-header">RANKING</li>
         </ul>
-        <LeaderBoard />
+        <LeaderBoard daynight={props.daynight} />
       </div>
     );
   }
