@@ -1,5 +1,6 @@
 import Text from "./Text";
 import { useEffect, useState } from "react";
+import getFilecontents from "../utils/filecontents";
 
 export default function Editor({
   file,
@@ -16,20 +17,25 @@ export default function Editor({
   const [autoWord, setAutoWord] = useState([]);
   const [keyEvent, setKeyEvent] = useState("");
   const [autoEnter, setAutoEnter] = useState(false);
+  const [textSplit, setTextSplit] = useState([]);
+
+  useEffect(() => {
+    setTextSplit(getFilecontents(file).content);
+  }, [file]);
 
   useEffect(() => {
     // 자동완성 판정 부분
-    const regex = /[a-z|A-Z]/;
+    const regex = /[a-zA-Z]/;
     let autoStop = userInput.length - 1;
     let starr = [];
-    while (regex.test(userInput[autoStop]) && autoStop > -1) {
+
+    while (autoStop >= 0 && regex.test(userInput[autoStop])) {
       starr.unshift(userInput[autoStop]);
       autoStop--;
     }
+
     setAutoWord(starr);
-    if (starr.length === 0) {
-      setUseAutoComplete(false);
-    }
+    setUseAutoComplete(starr.length > 0);
   }, [userInput]);
 
   const userInputTabHandler = (event) => {
@@ -44,6 +50,18 @@ export default function Editor({
       event.preventDefault();
       setAutoEnter(true);
       setUseAutoComplete(false);
+    } else if (event.key === "Enter") {
+      // 줄바꿈 후 자동 들여쓰기
+      event.preventDefault();
+      let spaceCount = 0;
+      if (textSplit[userInput.length] === "\n") {
+        for (let i = 1; i < fileLength; i++) {
+          if (textSplit[userInput.length + i] === " ") {
+            spaceCount++;
+          } else break;
+        }
+      }
+      setUserInput(userInput + "\n" + " ".repeat(spaceCount));
     } else if (event.key === "Tab") {
       event.preventDefault();
       setUserInput(userInput + "    ");
@@ -106,40 +124,9 @@ export default function Editor({
   return file !== "Ranking" ? (
     <div className="editor" onClick={focus}>
       <div className="numbering">
-        1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />
-        10
-        <br />
-        11
-        <br />
-        12
-        <br />
-        13
-        <br />
-        14
-        <br />
-        15
-        <br />
-        16
-        <br />
-        17
-        <br />
-        18
-        <br />
-        19
-        <br />
-        20
-        <br />
-        21
-        <br />
-        22
-        <br />
-        23
-        <br />
-        24
-        <br />
-        25
-        <br />
-        26
+        {Array.from({ length: 26 }, (_, i) => (
+          <div key={i + 1}>{i + 1}</div>
+        ))}
       </div>
       <textarea
         className="textbox"
