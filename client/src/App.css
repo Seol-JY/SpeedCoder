@@ -634,6 +634,10 @@ ul {
   transition: all 0.3s;
 }
 
+.sidebarsection-rank-items-high {
+  height: 60px;
+}
+
 .sidebarsection-rank p {
   margin: 0;
   padding: 0;
