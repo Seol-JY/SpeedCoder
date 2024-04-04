@@ -632,6 +632,16 @@ ul {
   font-style: normal;
   color: var(--section-header-color);
   transition: all 0.3s;
+  animation: 0.5s ease-in-out loadEffect1;
+}
+
+@keyframes loadEffect1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .sidebarsection-rank-items-high {
