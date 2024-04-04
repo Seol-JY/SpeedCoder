@@ -21,6 +21,12 @@ export default function Editor({
 
   useEffect(() => {
     setTextSplit(getFilecontents(file).content);
+    if (fileForCompare !== file) {
+      // 파일 변경 시 내용 초기화
+      setFileForCompare(file);
+      setUserInput("");
+    }
+    // eslint-disable-next-line
   }, [file]);
 
   useEffect(() => {
@@ -91,15 +97,6 @@ export default function Editor({
     //input창 내용을 userinput에 반영
     setUserInput(event.currentTarget.value); // replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
   };
-
-  useEffect(() => {
-    if (fileForCompare !== file) {
-      // 파일 변경 시 내용 초기화
-      setFileForCompare(file);
-      setUserInput("");
-    }
-    // eslint-disable-next-line
-  }, [file]);
 
   useEffect(() => {
     if (sectionForCompare !== section) {
