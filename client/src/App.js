@@ -80,6 +80,7 @@ function App() {
               setFile={setFile}
               fileLength={fileLength}
               setFinishTrigger={setFinishTrigger}
+              daynight={daynight}
             />
 
             <ul>
