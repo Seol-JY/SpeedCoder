@@ -83,14 +83,7 @@ export default function LeaderBoard({ daynight }) {
         );
       })}
       {loading && (
-        <li
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            objectFit: "cover",
-            height: "25px",
-          }}
-        >
+        <li>
           <ul>
             {[...Array(loading && items.length == 0 ? 14 : 3)].map(
               (_, index) => (
@@ -109,8 +102,17 @@ export default function LeaderBoard({ daynight }) {
               )
             )}
           </ul>
-
-          <img alt="loading..." src={"img/loading.gif"} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              objectFit: "cover",
+              height: "25px",
+            }}
+          >
+            {" "}
+            <img alt="loading..." src={"img/loading.gif"} />
+          </div>
         </li>
       )}
     </ul>
