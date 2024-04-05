@@ -7,7 +7,7 @@ class Counter {
     // 필요한 경우 생성자에서 초기화 작업 수행
   }
 
-  async increaseValue(amount) {
+  static async increaseValue(amount) {
     try {
       const response = await CounterStorage.increaseValue(amount);
       logger.info(`Value increased by ${amount}. New value: ${response.value}`);
@@ -18,7 +18,7 @@ class Counter {
     }
   }
 
-  async getValue() {
+  static async getValue() {
     try {
       const value = await CounterStorage.getValue();
       logger.info(`Current value: ${value}`);
