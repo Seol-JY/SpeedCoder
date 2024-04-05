@@ -36,7 +36,7 @@ class Record {
       // const end =
       //   page + 1 + 15 <= response.length - 1
       //     ? page * 15 + 15
-      //     : response.length - 1;
+      //     : response.length - 1;ㅋㅋ
       return response;
     } catch (err) {
       logger.err(`Failed to process database! ${err}`);

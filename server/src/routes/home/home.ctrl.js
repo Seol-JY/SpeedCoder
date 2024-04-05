@@ -28,6 +28,26 @@ const process = {
     };
     return res.status(url.status).json(response);
   },
+  increaseCounter: async (req, res) => {
+    const amount = parseInt(req.query.amount) || 1; // 기본값은 1
+    const response = await Counter.increaseValue(amount);
+    const url = {
+      method: "POST",
+      path: "/counter",
+      status: response.success ? 201 : 409,
+    };
+    return res.status(url.status).json(response);
+  },
+
+  getCounterValue: async (req, res) => {
+    const value = await Counter.getValue();
+    const url = {
+      method: "GET",
+      path: "/counter",
+      status: value !== null ? 200 : 404,
+    };
+    return res.status(url.status).json({ value });
+  },
 };
 
 module.exports = {
