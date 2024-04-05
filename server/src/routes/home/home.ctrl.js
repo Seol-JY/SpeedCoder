@@ -1,4 +1,6 @@
 "use strict";
+
+const Counter = require("../../model/Counter");
 const Record = require("../../model/Record");
 
 const output = {
