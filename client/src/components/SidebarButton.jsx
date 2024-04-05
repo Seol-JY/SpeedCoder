@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SidebarButton(props) {
   const [daynightico, setdaynightico] = useState("dark_mode");
   const [menustate, setmenustate] = useState("1");
 
+  useEffect(() => {
+    checker();
+  }, []);
+
   function checker() {
-    if (props.daynight % 2 === 1) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      setdaynightico("light_mode");
+    if (props.daynight === 1) {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        setdaynightico("light_mode");
+      }
     } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      setdaynightico("dark_mode");
+      if (props.daynight % 2 === 1) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        setdaynightico("light_mode");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        setdaynightico("dark_mode");
+      }
     }
   }
 
