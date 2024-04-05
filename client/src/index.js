@@ -28,6 +28,7 @@ root.render(
       `}</pre>
 
     {/* <button onClick={localStore.insertDummy}style={{margin:"0", fontSize: "20px", position: "absolute", left: "calc(100vw/2)", top: "calc(100vh/2)"}}>makeDummy!</button> */}
+
     <App />
   </div>
 );

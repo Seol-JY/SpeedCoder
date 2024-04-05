@@ -20,10 +20,39 @@ function App() {
   const [scale, setScale] = useState(
     Math.min(window.innerWidth / 1400, window.innerHeight / 900)
   );
+  const [counterValue, setCounterValue] = useState(0);
 
   useEffect(() => {
+    fetchCounterValue();
     egg();
   }, []);
+
+  const fetchCounterValue = async () => {
+    try {
+      const response = await fetch("/counter");
+      if (!response.ok) {
+        throw new Error("Failed to fetch counter value");
+      }
+      const data = await response.json();
+      setCounterValue(data.value);
+    } catch (error) {
+      console.error("Failed to fetch counter value:", error);
+    }
+  };
+
+  const increaseCounter = async (amount) => {
+    try {
+      const response = await fetch(`/counter?amount=${amount}`, {
+        method: "POST",
+      });
+      if (!response.ok) {
+        throw new Error("Failed to increase counter value");
+      }
+      setCounterValue((prevValue) => prevValue + amount);
+    } catch (error) {
+      console.error("Failed to increase counter value:", error);
+    }
+  };
 
   const handleResize = () => {
     setScale(Math.min(window.innerWidth / 1400, window.innerHeight / 900));
@@ -46,6 +75,25 @@ function App() {
 
   return (
     <Provider store={store}>
+      <div
+        style={{
+          margin: "0",
+          fontSize: "20px",
+          position: "absolute",
+          left: "calc(100vw/2 - 150px)",
+          top: "calc(100vh/2 - 100px)",
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          height: "70px",
+          width: "300px",
+          backgroundColor: "#f0f0f0",
+          borderRadius: "10px",
+        }}
+      >
+        <h1 style={{ position: "static" }}>Counter Value: {counterValue}</h1>
+        <button onClick={() => increaseCounter(1)}>Increase by 1</button>
+      </div>
       <div className="scale-wrapper" style={{ transform: `scale(${scale})` }}>
         <Draggable onDrag={(e, data) => trackPos(data)}>
           <div className="form no-drag">
