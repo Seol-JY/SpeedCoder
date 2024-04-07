@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Draggable from "react-draggable";
-import _debounce from "lodash/debounce";
 
 function App() {
   const [section, setSection] = useState("1");
@@ -18,7 +17,7 @@ function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [daynight, setdaynight] = useState(1);
   const [finishTrigger, setFinishTrigger] = useState(-1);
-  const [amountIncrease, setAmountIncrease] = useState(0); // 클릭 수
+  const [buttonClicked, setButtonClicked] = useState(false);
   const [scale, setScale] = useState(
     Math.min(window.innerWidth / 1400, window.innerHeight / 900)
   );
@@ -43,20 +42,18 @@ function App() {
   };
   const increaseCounter = async () => {
     try {
-      const response = await fetch(`/counter?amount=${amountIncrease}`, {
+      const response = await fetch(`/counter?amount=${1}`, {
         method: "POST",
       });
       if (!response.ok) {
         throw new Error("Failed to increase counter value");
       }
-      setCounterValue((prevValue) => prevValue + amountIncrease);
-      setAmountIncrease(0);
+      setCounterValue((prevValue) => prevValue + 1);
+      setButtonClicked(true);
     } catch (error) {
       console.error("Failed to increase counter value:", error);
     }
   };
-
-  const increaseCounterDebounced = _debounce(increaseCounter, 1000); // 1000ms 디바운스 지연
 
   const handleResize = () => {
     setScale(Math.min(window.innerWidth / 1400, window.innerHeight / 900));
@@ -100,21 +97,23 @@ function App() {
         <h1 style={{ position: "static" }}>
           Number of clicks: {counterValue.toLocaleString("ko-KR")}
         </h1>
-        <button
-          onClick={() => {
-            setAmountIncrease((prevAmount) => prevAmount + 1);
-            increaseCounterDebounced();
-          }}
-          className="sidebarsection-list"
-          style={{
-            width: "120px",
-            height: "40px",
-            border: "0.8px solid darkgray",
-            borderRadius: "10px",
-          }}
-        >
-          Can you press it?
-        </button>
+        {buttonClicked || (
+          <button
+            onClick={() => {
+              increaseCounter();
+              setButtonClicked(true);
+            }}
+            className="sidebarsection-list"
+            style={{
+              width: "120px",
+              height: "40px",
+              border: "0.8px solid darkgray",
+              borderRadius: "10px",
+            }}
+          >
+            Can you press it?
+          </button>
+        )}
       </div>
       <div className="scale-wrapper" style={{ transform: `scale(${scale})` }}>
         <Draggable onDrag={(e, data) => trackPos(data)}>
