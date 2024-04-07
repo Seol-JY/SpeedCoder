@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:8.20.0"],\
             ["eslint-plugin-react", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:7.30.1"],\
             ["eslint-plugin-react-hooks", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:4.6.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:7.1.4"],\
             ["react-dom", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:18.2.0"],\
@@ -15194,6 +15195,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:8.20.0"],\
             ["eslint-plugin-react", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:7.30.1"],\
             ["eslint-plugin-react-hooks", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:4.6.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:7.1.4"],\
             ["react-dom", "virtual:83a60ab0b66cd0c27263b20eaee4036ba4bf5b91f69513fefd8008c1ca8aec977ae039d662cfc02fc360a96f8ae9aca09f89219feba9bb6ec2669ab058e3a911#npm:18.2.0"],\
