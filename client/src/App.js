@@ -64,42 +64,6 @@ function App() {
   // }, []);
 
   useEffect(() => {
-    // 개발자 도구 검사
-    const detectDevTool = (allow) => {
-      let a = false;
-      if (isNaN(+allow)) allow = 100;
-      const start = +new Date();
-      debugger;
-      const end = +new Date();
-      if (isNaN(start) || isNaN(end) || end - start > allow) {
-        alert("DEVTOOLS detected. all operations will be terminated.");
-        window.location.href = "/";
-      }
-    };
-
-    if (window.attachEvent) {
-      if (
-        document.readyState === "complete" ||
-        document.readyState === "interactive"
-      ) {
-        detectDevTool();
-        window.attachEvent("onresize", detectDevTool);
-        window.attachEvent("onmousemove", detectDevTool);
-        window.attachEvent("onfocus", detectDevTool);
-        window.attachEvent("onblur", detectDevTool);
-      } else {
-        setTimeout(arguments.callee, 0);
-      }
-    } else {
-      window.addEventListener("load", detectDevTool);
-      window.addEventListener("resize", detectDevTool);
-      window.addEventListener("mousemove", detectDevTool);
-      window.addEventListener("focus", detectDevTool);
-      window.addEventListener("blur", detectDevTool);
-    }
-  }, []);
-
-  useEffect(() => {
     fetchCounterValue();
     egg();
 
