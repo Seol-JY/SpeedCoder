@@ -23,57 +23,9 @@ function App() {
   );
   const [counterValue, setCounterValue] = useState(0);
 
-  // useEffect(() => {
-  //   // 마우스 메뉴 막기
-  //   const handleContextMenu = (e) => {
-  //     e.preventDefault();
-  //   };
-  //   const handleKeyDown = (e) => {
-  //     if (
-  //       // CMD + Alt + I (Chrome, Firefox, Safari)
-  //       (e.metaKey && e.altKey && e.keyCode === 73) ||
-  //       // CMD + Alt + J (Chrome)
-  //       (e.metaKey && e.altKey && e.keyCode === 74) ||
-  //       // CMD + Alt + C (Chrome)
-  //       (e.metaKey && e.altKey && e.keyCode === 67) ||
-  //       // CMD + Shift + C (Chrome)
-  //       (e.metaKey && e.shiftKey && e.keyCode === 67) ||
-  //       // Ctrl + Shift + I (Chrome, Firefox, Safari, Edge)
-  //       (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
-  //       // Ctrl + Shift + J (Chrome, Edge)
-  //       (e.ctrlKey && e.shiftKey && e.keyCode === 74) ||
-  //       // Ctrl + Shift + C (Chrome, Edge)
-  //       (e.ctrlKey && e.shiftKey && e.keyCode === 67) ||
-  //       // F12 (Chome, Firefox, Edge)
-  //       e.keyCode === 123 ||
-  //       // CMD + Alt + U, Ctrl + U (View source: Chrome, Firefox, Safari, Edge)
-  //       (e.metaKey && e.altKey && e.keyCode === 85) ||
-  //       (e.ctrlKey && e.keyCode === 85)
-  //     ) {
-  //       e.preventDefault();
-  //     }
-  //   };
-
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   document.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
-
   useEffect(() => {
     fetchCounterValue();
     egg();
-
-    window.addEventListener("devtoolschange", (event) => {
-      if (event.detail.isOpen) {
-        console.log("Developer tools opened");
-      } else {
-        console.log("Developer tools closed");
-      }
-    });
   }, []);
 
   const fetchCounterValue = async () => {

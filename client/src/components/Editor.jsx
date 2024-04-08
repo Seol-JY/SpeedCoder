@@ -95,7 +95,12 @@ export default function Editor({
 
   const userInputHandler = (event) => {
     //input창 내용을 userinput에 반영
+    const previousValue = userInput; // 직전 값 저장
     setUserInput(event.currentTarget.value); // replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+    if (event.currentTarget.value.length - previousValue.length > 2) {
+      alert("Careful. This might not do what you think, 잘못된 접근입니다.");
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
