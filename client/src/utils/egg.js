@@ -50,4 +50,8 @@ can manipulate speed, please report
     "color: balck; font-size: 10px;",
     "color: #fff530; background-color: #212121; font-size: 11px;"
   );
+  console.log(
+    `%cCareful. This might not do what you think.`,
+    "color: yellow; background-color: red; font-size: 14px; font-weight: bold;"
+  );
 }
