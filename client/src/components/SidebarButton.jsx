@@ -6,7 +6,7 @@ export default function SidebarButton(props) {
 
   useEffect(() => {
     checker();
-  }, []);
+  }, [props.daynight]);
 
   function checker() {
     if (props.daynight === 1) {
@@ -16,13 +16,14 @@ export default function SidebarButton(props) {
       ) {
         document.documentElement.setAttribute("data-theme", "dark");
         setdaynightico("light_mode");
+        props.setdaynight(2);
       }
     } else {
       if (props.daynight % 2 === 1) {
-        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.setAttribute("data-theme", "light");
         setdaynightico("light_mode");
       } else {
-        document.documentElement.setAttribute("data-theme", "light");
+        document.documentElement.setAttribute("data-theme", "dark");
         setdaynightico("dark_mode");
       }
     }
@@ -58,7 +59,6 @@ export default function SidebarButton(props) {
           id="onlymargin"
           onClick={() => {
             props.setdaynight(props.daynight + 1);
-            checker();
           }}
         >
           {daynightico}

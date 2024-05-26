@@ -11,6 +11,8 @@ export default function Sidebar(props) {
     "server.js",
     "RectangleArea.java",
     "say_hello.py",
+    "Example.java",
+    "Fibonacci.java",
   ];
   useEffect(() => {
     if (props.section === "1") {
