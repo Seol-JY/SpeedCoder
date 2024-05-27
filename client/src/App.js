@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Draggable from "react-draggable";
+import InFeedAdvertise from "./components/advertises/InFeedAdvertise";
 
 function App() {
   const [section, setSection] = useState("1");
@@ -24,36 +25,36 @@ function App() {
   const [counterValue, setCounterValue] = useState(0);
 
   useEffect(() => {
-    fetchCounterValue();
+    // fetchCounterValue();
     egg();
   }, []);
 
-  const fetchCounterValue = async () => {
-    try {
-      const response = await fetch("/counter");
-      if (!response.ok) {
-        throw new Error("Failed to fetch counter value");
-      }
-      const data = await response.json();
-      setCounterValue(data.value);
-    } catch (error) {
-      console.error("Failed to fetch counter value:", error);
-    }
-  };
-  const increaseCounter = async () => {
-    try {
-      const response = await fetch(`/counter?amount=${1}`, {
-        method: "POST",
-      });
-      if (!response.ok) {
-        throw new Error("Failed to increase counter value");
-      }
-      setCounterValue((prevValue) => prevValue + 1);
-      setButtonClicked(true);
-    } catch (error) {
-      console.error("Failed to increase counter value:", error);
-    }
-  };
+  // const fetchCounterValue = async () => {
+  //   try {
+  //     const response = await fetch("/counter");
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch counter value");
+  //     }
+  //     const data = await response.json();
+  //     setCounterValue(data.value);
+  //   } catch (error) {
+  //     console.error("Failed to fetch counter value:", error);
+  //   }
+  // };
+  // const increaseCounter = async () => {
+  //   try {
+  //     const response = await fetch(`/counter?amount=${1}`, {
+  //       method: "POST",
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Failed to increase counter value");
+  //     }
+  //     setCounterValue((prevValue) => prevValue + 1);
+  //     setButtonClicked(true);
+  //   } catch (error) {
+  //     console.error("Failed to increase counter value:", error);
+  //   }
+  // };
 
   const handleResize = () => {
     setScale(Math.min(window.innerWidth / 1400, window.innerHeight / 900));
@@ -115,6 +116,19 @@ function App() {
           </button>
         )}
       </div> */}
+      <div
+        style={{
+          margin: "0 10px 0 0",
+          position: "absolute",
+          right: "0",
+          top: "calc(100vh/2 - 250px)",
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        <InFeedAdvertise />
+      </div>
       <div className="scale-wrapper" style={{ transform: `scale(${scale})` }}>
         <Draggable onDrag={(e, data) => trackPos(data)}>
           <div className="form no-drag">

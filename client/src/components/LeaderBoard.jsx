@@ -63,8 +63,8 @@ export default function LeaderBoard({ daynight }) {
     </ul>
   ) : (
     <ul className="sidebarsection-rank">
-      {items
-        .map((s, i) => {
+      {
+        items.map((s, i) => {
           // if (i === 2) {
           //   return (
           //     <li key={s._id} ref={prev}>
@@ -84,17 +84,19 @@ export default function LeaderBoard({ daynight }) {
             </li>
           );
         })
-        .reduce((acc, curr, i) => {
-          if (i === 3) {
-            acc.push(
-              <li key="advertise">
-                <InFeedAdvertise />
-              </li>
-            );
-          }
-          acc.push(curr);
-          return acc;
-        }, [])}
+        // 인피드 광고가 3번째에 삽입되어야 하나, 최소 width를 만족하지 못해 제거
+        // .reduce((acc, curr, i) => {
+        //   if (i === 3) {
+        //     acc.push(
+        //       <li key="advertise">
+        //         <InFeedAdvertise />
+        //       </li>
+        //     );
+        //   }
+        //   acc.push(curr);
+        //   return acc;
+        // }, [])
+      }
       {loading && (
         <li>
           <ul>
