@@ -1,12 +1,6 @@
 import { useEffect } from "react";
 
-const InFeedAdvertise = ({
-  className = "adsbygoogle",
-  client = "ca-pub-8658385917169302",
-  slot = "1562420452",
-  format = "fluid",
-  layoutKey = "-fp+68-11-df+sd",
-}) => {
+const InFeedAdvertise = () => {
   useEffect(() => {
     if (process.env.NODE_ENV === "production")
       try {
@@ -24,10 +18,9 @@ const InFeedAdvertise = ({
         style={{
           background: "#8aff8a",
           color: "black",
-          fontSize: "18px",
-          fontWeight: "bold",
-          textAlign: "center",
-          padding: "16px",
+          display: "inline-block",
+          width: "140px",
+          height: "500px",
         }}
       >
         광고 표시 영역
@@ -36,18 +29,15 @@ const InFeedAdvertise = ({
   //production인 경우 구글 광고 표시
   return (
     <ins
-      className={className}
+      className="adsbygoogle"
       style={{
-        overflowX: "auto",
-        overflowY: "hidden",
-        display: "block",
-        textAlign: "center",
+        display: "inline-block",
+        width: "140px",
+        height: "500px",
       }}
-      data-ad-client={client}
-      data-ad-slot={slot}
-      data-ad-format={format}
-      data-ad-layout-key={layoutKey}
-    />
+      data-ad-client="ca-pub-8658385917169302"
+      data-ad-slot="5603304488"
+    ></ins>
   );
 };
 
