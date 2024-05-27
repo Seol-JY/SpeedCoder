@@ -2,6 +2,7 @@ import fetcher from "../utils/fetcher";
 import { useState, useEffect, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
 import LeaderBoardContents from "./LeaderBoardContents";
+import InFeedAdvertise from "./advertises/InFeedAdvertise";
 
 export default function LeaderBoard({ daynight }) {
   const [prev, prevInView] = useInView(); // 무한 스크롤용 ref - 이전
@@ -62,26 +63,38 @@ export default function LeaderBoard({ daynight }) {
     </ul>
   ) : (
     <ul className="sidebarsection-rank">
-      {items.map((s, i) => {
-        // if (i === 2) {
-        //   return (
-        //     <li key={s._id} ref={prev}>
-        //       <LeaderBoardContents s={s} />
-        //     </li>
-        //   );
-        if (i === items.length - 1) {
+      {items
+        .map((s, i) => {
+          // if (i === 2) {
+          //   return (
+          //     <li key={s._id} ref={prev}>
+          //       <LeaderBoardContents s={s} />
+          //     </li>
+          //   );
+          if (i === items.length - 1) {
+            return (
+              <li key={s._id} ref={next}>
+                <LeaderBoardContents s={s} />
+              </li>
+            );
+          }
           return (
-            <li key={s._id} ref={next}>
+            <li key={s._id}>
               <LeaderBoardContents s={s} />
             </li>
           );
-        }
-        return (
-          <li key={s._id}>
-            <LeaderBoardContents s={s} />
-          </li>
-        );
-      })}
+        })
+        .reduce((acc, curr, i) => {
+          if (i === 3) {
+            acc.push(
+              <li key="advertise">
+                <InFeedAdvertise />
+              </li>
+            );
+          }
+          acc.push(curr);
+          return acc;
+        }, [])}
       {loading && (
         <li>
           <ul>
