@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { setCorrectchr } from "../redux/correct/actions";
 import { setWrongchr } from "../redux/wrong/actions";
+import { setSpacechr } from "../redux/space/actions";
 import getFilecontents from "../utils/filecontents";
 import AutoCompletion from "./AutoCompletion";
 
@@ -10,7 +11,8 @@ function Text(props) {
   const [textSplit, setTextSplit] = useState([]);
   const [themeColor, setThemeColor] = useState("");
   let wrong = 0,
-    correct = 0;
+    correct = 0,
+    space = 0;
   const user = props.userInput;
   const userSplit = user.split("");
 
@@ -32,6 +34,7 @@ function Text(props) {
   useEffect(() => {
     props.setCorrectchr(correct);
     props.setWrongchr(wrong);
+    props.setSpacechr(space);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 
@@ -56,6 +59,10 @@ function Text(props) {
             color = "#ff5c5c";
             colortxt = "white";
             wrong++;
+            if (userSplit[i] === " " || userSplit[i] === "\n") {
+              // 공백이나 개행으로 틀린 경우 속도 패널티 부여
+              space++;
+            }
           }
         }
 
@@ -111,6 +118,7 @@ const mapStateToProps = (state) => {
   return {
     Correctchr: state.correct.Correctchr,
     Wrongchr: state.wrong.Wrongchr,
+    Spacechr: state.space.Spacechr,
   };
 };
 
@@ -118,6 +126,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCorrectchr: (cor) => dispatch(setCorrectchr(cor)),
     setWrongchr: (wr) => dispatch(setWrongchr(wr)),
+    setSpacechr: (sp) => dispatch(setSpacechr(sp)),
   };
 };
 
