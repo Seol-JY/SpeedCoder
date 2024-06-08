@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Debug from "./Debug";
 import LeaderBoard from "./LeaderBoard";
 import IconGenerator from "./IconGenerator";
-import InFeedAdvertise from "./advertises/InFeedAdvertise";
-
 export default function Sidebar(props) {
   const [filestate, setFilestate] = useState("hello.py");
   const filename = [
