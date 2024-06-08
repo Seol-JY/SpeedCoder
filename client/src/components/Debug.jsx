@@ -7,6 +7,7 @@ function Debug({
   filestate,
   Correctchr,
   Wrongchr,
+  Spacechr,
   fileLength,
   setFinishTrigger,
 }) {
@@ -43,7 +44,7 @@ function Debug({
   useInterval(() => {
     // useInterval custom Hook
     setCount(count + 0.05); //0.05씩 UPDATE
-    setCpm(String(speed(count, Correctchr)).padStart(4, "0"));
+    setCpm(String(speed(count, Correctchr, Spacechr)).padStart(4, "0"));
   }, terval); // Hook 실행조건, terval은 밀리초단위
 
   return (
@@ -62,6 +63,7 @@ const mapStateToProps = (state) => {
   return {
     Correctchr: state.correct.Correctchr,
     Wrongchr: state.wrong.Wrongchr,
+    Spacechr: state.space.Spacechr,
   };
 };
 

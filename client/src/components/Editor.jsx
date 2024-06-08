@@ -46,7 +46,6 @@ export default function Editor({
 
   const userInputTabHandler = (event) => {
     // todo: 조건식 최적화
-    //tab을 공백4칸으로
     if (event.key === "Escape") {
       setUseAutoComplete(false);
     } else if (
@@ -93,12 +92,20 @@ export default function Editor({
     }
   };
 
+  // const containsNonEnglish = (text) => /[^\x00-\x7F]/.test(text);
+
   const userInputHandler = (event) => {
     //input창 내용을 userinput에 반영
+    const newValue = event.currentTarget.value;
+    // if (containsNonEnglish(newValue)) {
+    //   alert("영문만 입력 가능합니다.");
+    //   return;
+    // }
+
     const previousValue = userInput; // 직전 값 저장
-    setUserInput(event.currentTarget.value); // replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
-    if (event.currentTarget.value.length - previousValue.length > 2) {
-      alert("Careful. This might not do what you think, 잘못된 접근입니다.");
+    setUserInput(newValue);
+    if (newValue.length - previousValue.length > 2) {
+      alert("잘못된 접근입니다.");
       window.location.reload();
     }
   };
