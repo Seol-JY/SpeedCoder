@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Draggable from "react-draggable";
-import InFeedAdvertise from "./components/advertises/InFeedAdvertise";
 
 function App() {
   const [section, setSection] = useState("1");
@@ -77,45 +76,6 @@ function App() {
 
   return (
     <Provider store={store}>
-      {/* <div
-        style={{
-          margin: "0",
-          fontSize: "20px",
-          position: "absolute",
-          left: "calc(100vw/2 - 150px)",
-          top: "calc(100vh/2 - 100px)",
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          height: "100px",
-          width: "300px",
-          backgroundColor: "var(--topbar-background-color)",
-          borderRadius: "10px",
-          transition: "background-color 0.3s",
-          flexDirection: "column",
-        }}
-      >
-        <h1 style={{ position: "static" }}>
-          Number of clicks: {counterValue.toLocaleString("ko-KR")}
-        </h1>
-        {buttonClicked || (
-          <button
-            onClick={() => {
-              increaseCounter();
-              setButtonClicked(true);
-            }}
-            className="sidebarsection-list"
-            style={{
-              width: "120px",
-              height: "40px",
-              border: "0.8px solid darkgray",
-              borderRadius: "10px",
-            }}
-          >
-            Can you press it?
-          </button>
-        )}
-      </div> */}
       <div
         style={{
           margin: "0 10px 0 0",
@@ -126,9 +86,7 @@ function App() {
           justifyContent: "space-around",
           alignItems: "center",
         }}
-      >
-        <InFeedAdvertise />
-      </div>
+      ></div>
       <div className="scale-wrapper" style={{ transform: `scale(${scale})` }}>
         <Draggable onDrag={(e, data) => trackPos(data)}>
           <div className="form no-drag">
