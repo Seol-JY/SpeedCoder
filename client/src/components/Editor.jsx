@@ -18,6 +18,15 @@ export default function Editor({
   const [keyEvent, setKeyEvent] = useState("");
   const [autoEnter, setAutoEnter] = useState(false);
   const [textSplit, setTextSplit] = useState([]);
+  const [isEventMode, setIsEventMode] = useState(false);
+
+  // 이벤트 모드 체크를 위한 useEffect 추가
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const eventParam = queryParams.get('event');
+    setIsEventMode(eventParam?.toLowerCase() === 'bisc');
+  }, []);
+
 
   useEffect(() => {
     setTextSplit(getFilecontents(file).content);
@@ -45,6 +54,11 @@ export default function Editor({
   }, [userInput]);
 
   const userInputTabHandler = (event) => {
+    if (isEventMode && (event.key === 'Backspace' || event.key === 'Delete')) {
+      event.preventDefault();
+      return;
+    }
+
     // todo: 조건식 최적화
     if (event.key === "Escape") {
       setUseAutoComplete(false);

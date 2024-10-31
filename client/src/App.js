@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Draggable from "react-draggable";
+import ConditionalBanner from "./components/ConditionalBanner";
 
 function App() {
   const [section, setSection] = useState("1");
@@ -87,6 +88,7 @@ function App() {
           alignItems: "center",
         }}
       ></div>
+      <ConditionalBanner />
       <div className="scale-wrapper" style={{ transform: `scale(${scale})` }}>
         <Draggable onDrag={(e, data) => trackPos(data)}>
           <div className="form no-drag">

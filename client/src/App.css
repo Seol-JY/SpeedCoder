@@ -1,3 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
 .no-drag {
   -ms-user-select: none;
   -moz-user-select: -moz-none;
