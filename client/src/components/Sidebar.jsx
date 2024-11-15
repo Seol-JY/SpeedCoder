@@ -3,18 +3,40 @@ import Debug from "./Debug";
 import LeaderBoard from "./LeaderBoard";
 import IconGenerator from "./IconGenerator";
 export default function Sidebar(props) {
-  const [filestate, setFilestate] = useState("hello.py");
-  const filename = [
-    "hello.py",
-    "test.java",
-    "server.js",
-    "RectangleArea.java",
-    "say_hello.py",
-    "Example.java",
-    "Fibonacci.java",
-  ];
+  const [filestate, setFilestate] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("event") === "bisc" ? "ex.py" : "hello.py";
+  });
+
+  const [isEventMode, setIsEventMode] = useState(false);
+
   useEffect(() => {
-    if (props.section === "1") {
+    const params = new URLSearchParams(window.location.search);
+    const event = params.get("event");
+    setIsEventMode(event?.toLowerCase() === "bisc");
+  }, []);
+
+  const filename = isEventMode
+    ? ["ex.py", "print.c", "sha256.java"]
+    : [
+        "hello.py",
+        "test.java",
+        "server.js",
+        "RectangleArea.java",
+        "say_hello.py",
+        "Example.java",
+        "Fibonacci.java",
+      ];
+
+  useEffect(() => {
+    if (props.section === "1" && isEventMode) {
+      setFilestate(filestate);
+      props.setFile(filestate);
+    }
+  }, [props.section]);
+
+  useEffect(() => {
+    if (props.section === "1" && !isEventMode) {
       setFilestate(filestate);
       props.setFile(filestate);
     } else if (props.section === "2") {

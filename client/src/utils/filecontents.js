@@ -1,5 +1,38 @@
 const getFilecontents = (filename) => {
   switch (filename) {
+    case "ex.py":
+      return {
+        content: `from pwn import *
+p = remote("bisc", 4444)
+payload = b"A" * 0x40
+payload += p32(0xdeadbeef)
+p.sendline(payload)
+p.interactive()`.split(""),
+        colormap: "",
+      };
+    case "print.c":
+      return {
+        content: `#include <stdio.h>
+int main() {
+    printf("welcome to bisc\\n")
+    puts("WELCOME TO BISC\\n");
+    write(1, "wELcOmE tO BisC\\n", 17);
+    return 0;
+}`.split(""),
+        colormap: "",
+      };
+    case "sha256.java":
+      return {
+        content: `public class HashPassword {
+    public static void main(String[] args) throws Exception {
+        String password = "bisc";
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hash = md.digest(password.getBytes());
+        System.out.printf("%064x%n", new java.math.BigInteger(1, hash));
+    }
+}`.split(""),
+        colormap: "",
+      };
     case "RectangleArea.java":
       return {
         content: [

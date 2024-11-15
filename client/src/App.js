@@ -13,7 +13,10 @@ import ConditionalBanner from "./components/ConditionalBanner";
 
 function App() {
   const [section, setSection] = useState("1");
-  const [file, setFile] = useState("hello.py");
+  const [file, setFile] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("event") === "bisc" ? "ex.py" : "hello.py";
+  });
   const [fileLength, setFileLength] = useState(928);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [daynight, setdaynight] = useState(1);
