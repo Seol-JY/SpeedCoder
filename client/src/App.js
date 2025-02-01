@@ -1,5 +1,6 @@
 import "./App.css";
 import Editor from "./components/Editor";
+import ScreenSizeWarning from "./components/ScreenSizeWarning";
 import Sidebar from "./components/Sidebar";
 import SidebarButton from "./components/SidebarButton";
 import Topbar from "./components/Topbar";
@@ -80,6 +81,8 @@ function App() {
 
   return (
     <Provider store={store}>
+      <ScreenSizeWarning />
+
       <div
         style={{
           margin: "0 10px 0 0",
