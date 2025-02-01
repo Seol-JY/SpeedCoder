@@ -16,6 +16,12 @@ jobs:
       - name: Checkout source code.
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # 원하는 노드 버전 지정
+          cache: "yarn" # yarn 캐시 사용
+
       - name: React Build.
         run: |
           cd client
