@@ -16,17 +16,18 @@ export default function Sidebar(props) {
     setIsEventMode(event?.toLowerCase() === "bisc");
   }, []);
 
-  const filename = isEventMode
-    ? ["ex.py", "print.c", "sha256.java"]
-    : [
-        "hello.py",
-        "test.java",
-        "server.js",
-        "RectangleArea.java",
-        "say_hello.py",
-        "Example.java",
-        "Fibonacci.java",
-      ];
+  const filename = [
+    "hello.py",
+    "ex.py",
+    "print.c",
+    "sha256.java",
+    "test.java",
+    "server.js",
+    "RectangleArea.java",
+    "say_hello.py",
+    "Example.java",
+    "Fibonacci.java",
+  ];
 
   useEffect(() => {
     if (props.section === "1" && isEventMode) {
@@ -40,7 +41,7 @@ export default function Sidebar(props) {
       setFilestate(filestate);
       props.setFile(filestate);
     } else if (props.section === "2") {
-      props.setFile("Ranking");
+      props.setFile("Statistics");
     }
   }, [props.section]);
   if (props.section === "1") {

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import fetcher from "../utils/fetcher";
 import { connect } from "react-redux";
+import { saveTypingRecord } from "../utils/typingHistory";
 
 function PopupInnerInput({
   file,
@@ -21,7 +22,12 @@ function PopupInnerInput({
   const sendResult = () => {
     if (loading) return;
     setLoading(true);
-
+    saveTypingRecord({
+      file,
+      cpm: finishTrigger,
+      correctChars: Correctchr,
+      wrongChars: Wrongchr,
+    });
     fetcher.save(
       file,
       finishTrigger,

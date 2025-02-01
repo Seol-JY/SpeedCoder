@@ -786,3 +786,202 @@ ul {
   display: inline-block;
   margin: 0 5px 0 0;
 }
+/* App.css 수정 */
+
+.stats-container {
+  transition: all 0.3s;
+  padding: 0.4rem 1.4rem;
+  height: 96%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stats-summary {
+  transition: all 0.3s;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.stats-card {
+  transition: all 0.3s;
+  background-color: var(--sidebar-background-color);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--section-header-color);
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 42px;
+  gap: 0.25rem;
+}
+
+.card-label {
+  font-size: 01rem;
+  margin-left: 8px;
+  color: var(--section-header-color);
+}
+
+.card-value {
+  font-size: 1.5rem;
+  color: var(--section-header-color);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.card-unit {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-left: 0.25rem;
+}
+
+.trend-header {
+  transition: all 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.chart-scroll-container {
+  overflow-x: auto;
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+  scrollbar-width: none;
+}
+
+.records-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* 중요: 스크롤을 위해 필요 */
+}
+
+.records-header {
+  padding: 0.75rem 0;
+  margin-bottom: 0.5rem;
+}
+
+.records-table-container {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+.records-table-container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.records-table-container::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 42%, 0.169);
+  border-radius: 100px;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  position: sticky;
+  top: 0;
+  background-color: var(--sidebar-background-color);
+  padding: 1rem 1.25rem;
+  font-weight: normal;
+  color: var(--section-header-color);
+  text-align: left;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--form-background-color);
+}
+
+.data-table td {
+  padding: 0.875rem 1.25rem;
+  color: var(--section-header-color);
+  border-bottom: 1px solid var(--form-background-color);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.data-table tr:hover td {
+  background-color: var(--editor-background-color);
+}
+
+.emphasis {
+  color: var(--cursor-color);
+  font-weight: 500;
+  text-align: left;
+}
+
+.speed-normal {
+  color: var(--section-header-color);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.stats-card {
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Epic 카드 스타일 */
+.speed-card-epic {
+  background: linear-gradient(-45deg, #ff6b6b, #ffd93d, #ff6b6b);
+  background-size: 300% 300%;
+  animation: gradient 20s ease infinite;
+  transition: transform 0.2s ease-out;
+}
+
+/* Legendary 카드 스타일 */
+.speed-card-legendary {
+  background: linear-gradient(135deg, #ff0099, #00ffcc);
+  background-size: 300% 300%;
+  animation: gradient 20s ease infinite;
+  transition: transform 0.2s ease-out;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.white-text {
+  color: white !important;
+}
+
+.white-text .card-unit {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1;
+}

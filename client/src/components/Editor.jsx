@@ -1,6 +1,7 @@
 import Text from "./Text";
 import { useEffect, useState } from "react";
 import getFilecontents from "../utils/filecontents";
+import TypingStats from "./TypingStats";
 
 export default function Editor({
   file,
@@ -23,10 +24,9 @@ export default function Editor({
   // 이벤트 모드 체크를 위한 useEffect 추가
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
-    const eventParam = queryParams.get('event');
-    setIsEventMode(eventParam?.toLowerCase() === 'bisc');
+    const eventParam = queryParams.get("event");
+    setIsEventMode(eventParam?.toLowerCase() === "bisc");
   }, []);
-
 
   useEffect(() => {
     setTextSplit(getFilecontents(file).content);
@@ -54,7 +54,7 @@ export default function Editor({
   }, [userInput]);
 
   const userInputTabHandler = (event) => {
-    if (isEventMode && (event.key === 'Backspace' || event.key === 'Delete')) {
+    if (isEventMode && (event.key === "Backspace" || event.key === "Delete")) {
       event.preventDefault();
       return;
     }
@@ -144,7 +144,7 @@ export default function Editor({
     //textbox로 focus이동
     document.querySelector(".textbox").focus();
   };
-  return file !== "Ranking" ? (
+  return file !== "Statistics" ? (
     <div className="editor" onClick={focus}>
       <div className="numbering">
         {Array.from({ length: 26 }, (_, i) => (
@@ -174,12 +174,8 @@ export default function Editor({
       />
     </div>
   ) : (
-    <div className="editor" style={{ fontSize: "60px", color: "gray" }}>
-      <br />
-      <br />
-      <br />
-      <br />
-      Press Explorer to play.
+    <div className="editor">
+      <TypingStats />
     </div>
   );
 }
