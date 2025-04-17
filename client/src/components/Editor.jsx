@@ -21,9 +21,6 @@ export default function Editor({
   const [textSplit, setTextSplit] = useState([]);
   const [isEventMode, setIsEventMode] = useState(false);
 
-  // 백스페이스로 인해 괄호 닫기 지워지지 않는 현상 해결
-  const [deletionMode, setDeletionMode] = useState(false);
-
   // 이벤트 모드 체크를 위한 useEffect 추가
   // useEffect(() => {
   //   const queryParams = new URLSearchParams(window.location.search);
@@ -57,13 +54,8 @@ export default function Editor({
   }, [userInput]);
 
   const userInputTabHandler = (event) => {
-    setDeletionMode(false);
-    // if (isEventMode && (event.key === "Backspace" || event.key === "Delete")) {
-    //   event.preventDefault();
-    //   return;
-    // }
-    if (event.key === "Backspace") {
-      setDeletionMode(true);
+    if (isEventMode && (event.key === "Backspace" || event.key === "Delete")) {
+      event.preventDefault();
       return;
     }
     // todo: 조건식 최적화
@@ -178,7 +170,6 @@ export default function Editor({
         file={file}
         setFileLength={setFileLength}
         daynight={daynight}
-        deletionMode={deletionMode}
       />
     </div>
   ) : (
