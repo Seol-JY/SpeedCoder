@@ -15,6 +15,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      tag: ${{ steps.sha.outputs.short }}
     steps:
       - uses: actions/checkout@v4
 
@@ -54,8 +56,24 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Deploy hint
+  deploy:
+    name: GitOps 태그 갱신
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency: speedcoder-deploy
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Seol-JY/seol-gitops
+          ssh-key: ${{ secrets.GITOPS_DEPLOY_KEY }}
+
+      - name: 이미지 태그 갱신
+        env:
+          TAG: ${{ needs.build.outputs.tag }}
         run: |
-          echo "seol-gitops 의 apps/speedcoder/kustomization.yaml 에서"
-          echo "  newTag: ${{ steps.sha.outputs.short }}"
-          echo "로 갱신 후 커밋하면 Argo CD 가 배포합니다."
+          yq -i '(.images[] | select(.name == strenv(IMAGE)) | .newTag) = strenv(TAG)' apps/speedcoder/kustomization.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -am "chore(speedcoder): 이미지 태그 ${TAG} 갱신"
+          git push
