@@ -105,16 +105,6 @@ function App() {
             >
               Speed Coder - Insiders
             </h1>
-            <img
-              style={{
-                position: "absolute",
-                right: "10px",
-                top: "770px",
-                left: "1148px",
-                width: "6%",
-              }}
-              src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fspeedcoder.seol.pro&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&edge_flat=false"
-            />
 
             <ul className="circlewrapper" onClick={easteregg}>
               <li className="circle">
