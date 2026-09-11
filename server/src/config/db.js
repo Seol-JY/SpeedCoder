@@ -1,24 +1,21 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri = process.env.ATLAS_URL;
+"use strict";
+const { Pool } = require("pg");
+const logger = require("./logger");
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  max: Number(process.env.PGPOOL_MAX) || 10,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 5000,
 });
 
-let _db;
+// 유휴 커넥션이 끊겨도 프로세스가 죽지 않도록 받아둔다
+pool.on("error", (err) => {
+  logger.error(`Idle client error: ${err.message}`);
+});
 
 module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      if (db) {
-        _db = db.db("speedcoder");
-      }
-      return callback(err);
-    });
-  },
-  getDb: function () {
-    return _db;
-  },
+  query: (text, params) => pool.query(text, params),
+  ping: () => pool.query("SELECT 1"),
+  close: () => pool.end(),
 };

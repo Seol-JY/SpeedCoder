@@ -8,14 +8,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "4.18.1",
-    "mongodb": "^4.8.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19",
+    "pg": "^8.23.0",
     "winston": "^3.8.1",
     "winston-daily-rotate-file": "^4.7.1"
   },
   "scripts": {
-    "start": "yarn nodemon ./bin/www.js"
+    "start": "node --require ./.pnp.cjs ./bin/www.js",
+    "dev": "node --watch --require ./.pnp.cjs ./bin/www.js"
   },
   "packageManager": "yarn@3.2.2"
 }

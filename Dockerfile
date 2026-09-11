@@ -1,10 +1,14 @@
-FROM node:18
+FROM node:24-slim
+
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV PORT 80
+ENV NODE_ENV=production
+ENV PORT=8080
 
-COPY server/     .
+COPY --chown=node:node server/ .
 
-EXPOSE 80
-CMD [ "yarn", "start" ]
+USER node
+EXPOSE 8080
+
+# PnP 런타임을 직접 물려 실행한다, 개발용 nodemon 은 프로덕션에 두지 않는다
+CMD ["node", "--require", "./.pnp.cjs", "./bin/www.js"]

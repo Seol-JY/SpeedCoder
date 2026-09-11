@@ -1,64 +1,51 @@
-const { createLogger, transports, format} = require("winston");
-const winstonDaily = require('winston-daily-rotate-file')
-const { printf, combine, timestamp, label, simple, colorize} = format;
+const { createLogger, transports, format } = require("winston");
+const { printf, combine, timestamp, label, colorize, errors } = format;
 
-const printFormat = printf(({ timestamp, label, level, message })=>{
-    return `[${label}] [${timestamp}] ${level}: ${message}`
-})
+const printFormat = printf(
+  ({ timestamp, label, level, message, stack }) =>
+    `[${label}] [${timestamp}] ${level}: ${stack || message}`
+);
 
-const logFormat = {
-    file: combine(
-        label({
-            label: "Server"
-        }),
-        timestamp({
-            format: "YYYY-MM-DD HH:mm:dd",
-        }),
-        printFormat 
-    ),
-    console: combine(
-        colorize(),
-        simple()
-    )
-}
+const baseFormat = combine(
+  label({ label: "Server" }),
+  timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+  errors({ stack: true }),
+  printFormat
+);
 
-const opts = {
-    fileInfo: new winstonDaily({
-        datePattern: 'YYYY-MM-DD',
-        filename: `%DATE%.log`,
-        dirname: "./logs/info",
-        maxFiles: 7,
-        level: "info",
-        format: logFormat.file,
-        zippedArchive: true,
-    }),
-    fileError: new winstonDaily({
-        datePattern: 'YYYY-MM-DD',
-        filename: `%DATE%.error.log`,
-        dirname: "./logs/error",
-        maxFiles: 7,
-        level: "error",
-        format: logFormat.file,
-        zippedArchive: true,
-        handleExceptions: true,
-    }),
-    console: new transports.Console({
-        level: "info",
-        format: logFormat.console
-    }),
-}
-
+// 컨테이너에서는 stdout 이 유일하게 수집되는 경로다, 파일 로그는 파드가 사라지면 같이 사라진다
 const logger = createLogger({
-    transports: [opts.fileInfo, opts.fileError]
+  level: process.env.LOG_LEVEL || "info",
+  transports: [
+    new transports.Console({
+      format:
+        process.env.LOG_COLOR === "true"
+          ? combine(colorize(), baseFormat)
+          : baseFormat,
+      handleExceptions: true,
+      handleRejections: true,
+    }),
+  ],
 });
 
-if (process.env.NODE_ENV !== "production") {
-    // only dev
-    logger.add(opts.console);
+if (process.env.LOG_TO_FILE === "true") {
+  const winstonDaily = require("winston-daily-rotate-file");
+  const daily = (dirname, filename, level) =>
+    new winstonDaily({
+      datePattern: "YYYY-MM-DD",
+      filename,
+      dirname,
+      maxFiles: 7,
+      level,
+      format: baseFormat,
+      zippedArchive: true,
+    });
+  logger.add(daily("./logs/info", "%DATE%.log", "info"));
+  logger.add(daily("./logs/error", "%DATE%.error.log", "error"));
 }
 
 logger.stream = {
-    write: (message) => logger.info(message.slice(0, -1)),
-}
+  write: (message) => logger.info(message.trim()),
+};
 
 module.exports = logger;

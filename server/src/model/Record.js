@@ -39,7 +39,7 @@ class Record {
       //     : response.length - 1;ㅋㅋ
       return response;
     } catch (err) {
-      logger.err(`Failed to process database! ${err}`);
+      logger.error(`Failed to process database! ${err}`);
       return 0;
     }
   }

@@ -21,3 +21,5 @@ yarn-error.log*
 
 # log
 logs/*
+# 이미지에 들어가지 않는다, 빌드 컨텍스트만 키운다
+client

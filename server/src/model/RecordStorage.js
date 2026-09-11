@@ -1,43 +1,39 @@
 "use strict";
-const dbo = require("../config/db");
+const db = require("../config/db");
+
+const ITEMS_PER_PAGE = 15;
 
 class RecordStorage {
   static async save(record) {
-    return new Promise((resolve, reject) => {
-      const db_connect = dbo.getDb();
-      const recordObj = {
-        createAt: new Date(),
-        file: record.file,
-        cpm: record.cpm,
-        name: record.name,
-        message: record.message,
-        correctChr: record.correctChr,
-        worngChr: record.wrongChr,
-      };
-
-      db_connect.collection("leaderboard").insertOne(recordObj, (err, res) => {
-        if (err) reject(err);
-        resolve({ success: true });
-      });
-    });
+    await db.query(
+      `INSERT INTO leaderboard
+         (file, cpm, name, message, correct_chr, wrong_chr)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [
+        record.file,
+        record.cpm,
+        record.name,
+        record.message,
+        record.correctChr,
+        record.wrongChr,
+      ]
+    );
+    return { success: true };
   }
 
   static async load(page) {
-    const ITEMS_PER_PAGE = 15; // 페이지당 아이템 수
-    return new Promise((resolve, reject) => {
-      const db_connect = dbo.getDb();
-
-      db_connect
-        .collection("leaderboard")
-        .find({})
-        .sort({ cpm: -1, wrongChr: 1, createAt: 1 })
-        .skip((page - 1) * ITEMS_PER_PAGE)
-        .limit(ITEMS_PER_PAGE)
-        .toArray((err, res) => {
-          if (err) reject(err);
-          resolve(res);
-        });
-    });
+    const { rows } = await db.query(
+      `SELECT id                AS "_id",
+              created_at        AS "createAt",
+              file, cpm, name, message,
+              correct_chr       AS "correctChr",
+              wrong_chr         AS "wrongChr"
+         FROM leaderboard
+        ORDER BY cpm DESC, wrong_chr ASC, created_at ASC
+        LIMIT $1 OFFSET $2`,
+      [ITEMS_PER_PAGE, (page - 1) * ITEMS_PER_PAGE]
+    );
+    return rows;
   }
 }
 

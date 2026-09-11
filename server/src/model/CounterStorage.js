@@ -1,53 +1,19 @@
 "use strict";
-const dbo = require("../config/db");
+const db = require("../config/db");
 
 class CounterStorage {
   static async increaseValue(amount) {
-    return new Promise((resolve, reject) => {
-      const db_connect = dbo.getDb();
-
-      // 현재 값 가져오기
-      db_connect.collection("counter").findOne({}, (err, result) => {
-        if (err) reject(err);
-
-        let currentValue = 0;
-        if (result && result.value) {
-          currentValue = result.value;
-        }
-
-        // 증가한 값을 업데이트
-        const newValue = currentValue + amount;
-        db_connect
-          .collection("counter")
-          .updateOne(
-            {},
-            { $set: { value: newValue } },
-            { upsert: true },
-            (err, res) => {
-              if (err) reject(err);
-              resolve({ success: true, value: newValue });
-            }
-          );
-      });
-    });
+    // 읽고 나서 쓰면 동시 요청이 서로의 증가분을 덮어쓰므로 한 문장으로 처리한다
+    const { rows } = await db.query(
+      `UPDATE counter SET value = value + $1 WHERE id = 1 RETURNING value`,
+      [amount]
+    );
+    return { success: true, value: Number(rows[0].value) };
   }
 
   static async getValue() {
-    return new Promise((resolve, reject) => {
-      const db_connect = dbo.getDb();
-
-      // 현재 값 가져오기
-      db_connect.collection("counter").findOne({}, (err, result) => {
-        if (err) reject(err);
-
-        let currentValue = 0;
-        if (result && result.value) {
-          currentValue = result.value;
-        }
-
-        resolve(currentValue);
-      });
-    });
+    const { rows } = await db.query(`SELECT value FROM counter WHERE id = 1`);
+    return rows.length ? Number(rows[0].value) : 0;
   }
 }
 
